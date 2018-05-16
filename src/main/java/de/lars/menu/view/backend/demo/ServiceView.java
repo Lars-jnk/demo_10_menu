@@ -22,7 +22,7 @@ import javax.inject.Inject;
 @Route(value = "service", layout = BackendView.class)
 @PageTitle("DemoService")
 public class ServiceView extends VerticalLayout {
-    
+
     public static String ID_LABEL = "demo_label";
     public static String ID_TEXTFIELD = "demo_textfield";
     public static String ID_BUTTON = "demo_button";
@@ -34,6 +34,7 @@ public class ServiceView extends VerticalLayout {
         Label label = new Label("empty");
         label.setId(ID_LABEL);
         TextField tf = new TextField("Text eingeben");
+        //tf.setValue("tester");
         tf.setId(ID_TEXTFIELD);
         Button button = new Button("Click me",
                 event -> label.setText(service.get(tf.getValue())));
