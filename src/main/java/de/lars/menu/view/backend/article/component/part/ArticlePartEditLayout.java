@@ -39,6 +39,8 @@ public abstract class ArticlePartEditLayout extends VerticalLayout {
 
     protected abstract ArticlePart getEntity();
 
+    protected abstract void setEntity(ArticlePart entity);
+
     public void setArticlePartListLayout(ArticlePartListLayout listLayout) {
         this.listLayout = listLayout;
     }

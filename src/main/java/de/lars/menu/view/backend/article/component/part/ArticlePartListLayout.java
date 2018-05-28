@@ -7,6 +7,8 @@ package de.lars.menu.view.backend.article.component.part;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import de.lars.menu.entity.article.ArticlePart;
+import de.lars.menu.entity.article.ArticlePartText;
+import de.lars.menu.view.backend.article.component.part.layout.ArticlePartTextEditLayout;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,26 @@ public class ArticlePartListLayout extends VerticalLayout {
         add(articlePartEditLayout);
     }
 
+    public List<ArticlePart> getParts() {
+        List<ArticlePart> partList = new ArrayList<ArticlePart>();
+        for (ArticlePartEditLayout layout : parts) {
+            partList.add(layout.getEntity());
+        }
+        return partList;
+    }
+
+    public void setParts(List<ArticlePart> articleParts) {
+        for (ArticlePart articlePart : articleParts) {
+            if (articlePart instanceof ArticlePartText) {
+                ArticlePartEditLayout layout = new ArticlePartTextEditLayout();
+                layout.setArticlePartListLayout(this);
+                layout.setEntity(articlePart);
+                parts.add(layout);
+                add(layout);
+            }
+        }
+    }
+
     public void moveViewDown(ArticlePartEditLayout articlePartEditLayout) {
         int idx = indexOf(articlePartEditLayout);
         if (idx < getComponentCount() - 1) {
@@ -45,13 +67,5 @@ public class ArticlePartListLayout extends VerticalLayout {
 
     public void removeView(ArticlePartEditLayout articlePartEditLayout) {
         remove(articlePartEditLayout);
-    }
-
-    public List<ArticlePart> getParts() {
-        List<ArticlePart> partList = new ArrayList<ArticlePart>();
-        for (ArticlePartEditLayout layout : parts) {
-            partList.add(layout.getEntity());
-        }
-        return partList;
     }
 }

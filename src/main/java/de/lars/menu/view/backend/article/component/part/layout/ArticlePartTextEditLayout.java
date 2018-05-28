@@ -40,4 +40,15 @@ public class ArticlePartTextEditLayout extends ArticlePartEditLayout {
         entity.setText(text.getValue());
         return entity;
     }
+
+    @Override
+    protected void setEntity(ArticlePart entity) {
+        if (entity instanceof ArticlePartText) {
+            ArticlePartText entityText = (ArticlePartText) entity;
+            headline.setValue(entityText.getHeadline());
+            text.setValue(entityText.getText());
+        } else {
+            throw new IllegalArgumentException(ArticlePartText.class.getName() + " expected; instead " + entity.getClass().getName());
+        }
+    }
 }

@@ -25,6 +25,7 @@ public class ArticleEditView extends ArticleModificationView implements HasUrlPa
     private ArticleDeleteDialog deleteDialog;
 
     private Article article;
+    private Button btnToShow;
 
     public ArticleEditView() {
         HorizontalLayout buttons = new HorizontalLayout();
@@ -46,11 +47,13 @@ public class ArticleEditView extends ArticleModificationView implements HasUrlPa
             deleteDialog.open();
         });
 
+        btnToShow = new Button("show");
+
         Button btnToList = new Button("to List");
         btnToList.addClickListener(e -> {
             btnToList.getUI().ifPresent(ui -> ui.navigate("article"));
         });
-        buttons.add(btnCreate, btnDelete, btnToList);
+        buttons.add(btnCreate, btnDelete, btnToShow, btnToList);
 
         add(buttons);
         addForms();
@@ -62,5 +65,10 @@ public class ArticleEditView extends ArticleModificationView implements HasUrlPa
         article = facade.find(articleId);
         tfHeadline.setValue(article.getHeadline());
         tfPath.setValue(article.getPath());
+        articlePartListLayout.setParts(article.getParts());
+
+        btnToShow.addClickListener(e -> {
+            btnToShow.getUI().ifPresent(ui -> ui.navigate("article/show/" + articleId));
+        });
     }
 }

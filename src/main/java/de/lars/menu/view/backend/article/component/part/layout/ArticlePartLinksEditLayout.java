@@ -9,6 +9,7 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import de.lars.menu.entity.article.ArticlePart;
+import de.lars.menu.entity.article.ArticlePartLinklist;
 import de.lars.menu.view.backend.article.component.part.ArticlePartEditLayout;
 
 /**
@@ -25,5 +26,14 @@ public class ArticlePartLinksEditLayout extends ArticlePartEditLayout {
     @Override
     protected ArticlePart getEntity() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected void setEntity(ArticlePart entity) {
+        if (entity instanceof ArticlePartLinklist) {
+            ArticlePartLinklist entityLinks = (ArticlePartLinklist) entity;
+        } else {
+            throw new IllegalArgumentException(ArticlePartLinklist.class.getName() + " expected; instead " + entity.getClass().getName());
+        }
     }
 }

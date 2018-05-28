@@ -7,12 +7,9 @@ package de.lars.menu.view.backend.article;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
@@ -33,8 +30,23 @@ public class ArticleShowView extends VerticalLayout implements HasUrlParameter<L
 
     private TextField tfHeadline;
     private TextField tfPath;
+    private Button btnEdit;
 
     public ArticleShowView() {
+
+        HorizontalLayout buttons = new HorizontalLayout();
+
+        Button btnToList = new Button("to List");
+        btnToList.addClickListener(e -> {
+            btnToList.getUI().ifPresent(ui -> ui.navigate("article"));
+        });
+
+        btnEdit = new Button("Edit");
+
+        buttons.add(btnToList, btnEdit);
+
+        add(buttons);
+
         FormLayout forms = new FormLayout();
 
         tfHeadline = new TextField();
@@ -48,16 +60,6 @@ public class ArticleShowView extends VerticalLayout implements HasUrlParameter<L
         forms.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 1));
 
         add(forms);
-
-        HorizontalLayout buttons = new HorizontalLayout();
-
-        Button btn = new Button("to List");
-        btn.addClickListener(e -> {
-            btn.getUI().ifPresent(ui -> ui.navigate("article"));
-        });
-        buttons.add(btn);
-
-        add(buttons);
     }
 
     @Override
@@ -65,5 +67,9 @@ public class ArticleShowView extends VerticalLayout implements HasUrlParameter<L
         Article article = facade.find(articleId);
         tfHeadline.setValue(article.getHeadline());
         tfPath.setValue(article.getPath());
+
+        btnEdit.addClickListener(e -> {
+            btnEdit.getUI().ifPresent(ui -> ui.navigate("article/edit/" + articleId));
+        });
     }
 }
