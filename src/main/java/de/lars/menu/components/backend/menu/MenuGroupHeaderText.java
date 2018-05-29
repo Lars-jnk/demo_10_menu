@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.lars.menu.components.backend;
+package de.lars.menu.components.backend.menu;
 
 import com.vaadin.flow.component.html.Label;
 

@@ -4,7 +4,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
-import de.lars.menu.components.backend.Menu;
+import de.lars.menu.components.backend.menu.Menu;
 
 /**
  * The main view contains a button and a template element.

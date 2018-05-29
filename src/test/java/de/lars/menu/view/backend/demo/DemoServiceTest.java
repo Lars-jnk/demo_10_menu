@@ -25,7 +25,7 @@ public class DemoServiceTest {
         System.setProperty("webdriver.gecko.driver", "k:\\Programme\\_WebDriver\\geckodriver.exe");
 
         WebDriver driver = new FirefoxDriver();
-        driver.navigate().to("http://localhost:8080/demo_10_menu/service");
+        driver.navigate().to("http://localhost:8080/demo_10_menu_git/service");
 
         Assert.assertEquals("DemoService", driver.getTitle());
 

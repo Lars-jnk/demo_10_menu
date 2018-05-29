@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.lars.menu.components.backend;
+package de.lars.menu.components.backend.menu;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -21,6 +21,7 @@ public class MenuGroup extends VerticalLayout {
         setClassName("be-menu-group");
         setPadding(false);
         setSpacing(false);
+        setMargin(false);
 
         header = new MenuGroupHeader(title, this);
         add(header);
