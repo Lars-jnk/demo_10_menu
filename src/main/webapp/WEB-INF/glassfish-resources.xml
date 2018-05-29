@@ -6,7 +6,7 @@
         <property name="portNumber" value="3306"/>
         <property name="databaseName" value="demo_10_menu"/>
         <property name="User" value="root"/>
-        <property name="Password" value="t5U8ke2"/>
+        <property name="Password" value="g%7k$d8_)gtk+0=kf&amp;UD"/>
         <property name="URL" value="jdbc:mysql://localhost:3306/demo_10_menu?zeroDateTimeBehavior=convertToNull"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
