@@ -22,7 +22,7 @@ public class DemoServiceTest {
 
     @Test
     public void testServiceView() throws InterruptedException {
-        System.setProperty("webdriver.gecko.driver", "k:\\Programme\\_WebDriver\\geckodriver.exe");
+        //System.setProperty("webdriver.gecko.driver", "k:\\Programme\\_WebDriver\\geckodriver.exe");
 
         WebDriver driver = new FirefoxDriver();
         driver.navigate().to("http://localhost:8080/demo_10_menu_git/service");
