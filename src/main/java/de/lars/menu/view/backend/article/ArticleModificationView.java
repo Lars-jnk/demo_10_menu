@@ -5,16 +5,20 @@
  */
 package de.lars.menu.view.backend.article;
 
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import de.lars.menu.entity.article.Article;
 import de.lars.menu.entity.facade.ArticleFacade;
+import de.lars.menu.service.PathGenerationService;
 import de.lars.menu.view.backend.article.component.part.ArticlePartEditLayout;
+import de.lars.menu.view.backend.article.component.part.ArticlePartListLayout;
 import de.lars.menu.view.backend.article.component.part.button.ArticlePartToolButton;
 import de.lars.menu.view.backend.article.component.part.button.ArticlePartToolButtonList;
-import de.lars.menu.view.backend.article.component.part.ArticlePartListLayout;
 import de.lars.menu.view.backend.article.component.part.layout.ArticlePartLinksEditLayout;
 import de.lars.menu.view.backend.article.component.part.layout.ArticlePartTextEditLayout;
 import java.util.logging.Level;
@@ -31,6 +35,9 @@ public abstract class ArticleModificationView extends VerticalLayout {
     @Inject
     protected ArticleFacade facade;
 
+    @Inject
+    private PathGenerationService pathGenService;
+
     protected TextField tfHeadline;
     protected TextField tfPath;
 
@@ -44,19 +51,31 @@ public abstract class ArticleModificationView extends VerticalLayout {
         setSpacing(false);
 
         forms = new FormLayout();
+        forms.setWidth("100%");
 
         tfHeadline = new TextField();
+        tfHeadline.setWidth("100%");
         tfHeadline.setPlaceholder("Überschrift");
         tfHeadline.setMinLength(Article.HEADLINE_MIN_LEN);
         tfHeadline.setMaxLength(Article.HEADLINE_MAX_LEN);
-        forms.addFormItem(tfHeadline, "Überschrift");
+        forms.addFormItem(tfHeadline, new Label("Überschrift"));
 
         tfPath = new TextField();
         tfPath.setPlaceholder("Pfad");
         tfPath.setMinLength(Article.PATH_MIN_LEN);
         tfPath.setMaxLength(Article.PATH_MAX_LEN);
         tfPath.setPattern(Article.PATH_PATTERN);
-        forms.addFormItem(tfPath, "Pfad");
+
+        Button btnPath = new Button("generieren");
+        btnPath.addClickListener(e -> {
+            //Notification.show("hallo", 0, Notification.Position.TOP_START);
+            tfPath.setValue(pathGenService.generateFromHeadline(tfHeadline.getValue()));
+        });
+
+        HorizontalLayout layoutPath = new HorizontalLayout(tfPath, btnPath);
+        layoutPath.setWidth("100%");
+        layoutPath.expand(tfPath);
+        forms.addFormItem(layoutPath, new Label("Pfad"));
 
         forms.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 1));
     }
