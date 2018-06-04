@@ -3,8 +3,38 @@
     border-left: 3px solid #262f3d;
     border-right: 3px solid #262f3d;
     padding: 0px;
+    margin: 0px;
 }
 
+.be-article-buttons {
+    padding: 10px;
+}
+
+.be-article-btn {
+    height: 20px;
+    color: black;
+    background-color: lightgray;
+    cursor: pointer;
+    padding: 10px;    
+    border-radius: 10px;
+}
+
+.be-article-btn-lbl {
+    margin-top: -4px;
+}
+
+.be-article-btn:hover {
+    background-color: grey;
+}
+
+.be-article-header {
+    width: -webkit-fill-available;
+    padding: 10px;
+}
+
+.be-article-header-path-lbl {
+    
+}
 
 .be-article-list-mod-border {
     width: -webkit-fill-available;

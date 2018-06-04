@@ -5,13 +5,13 @@
  */
 package de.lars.menu.view.backend.article;
 
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 import de.lars.menu.entity.article.Article;
 import de.lars.menu.view.backend.BackendView;
+import de.lars.menu.view.backend.article.component.part.button.ArticleButton;
 import javax.inject.Inject;
 
 /**
@@ -25,12 +25,14 @@ public class ArticleEditView extends ArticleModificationView implements HasUrlPa
     private ArticleDeleteDialog deleteDialog;
 
     private Article article;
-    private Button btnToShow;
+    private ArticleButton btnToShow;
 
     public ArticleEditView() {
         HorizontalLayout buttons = new HorizontalLayout();
+        buttons.addClassName("be-article-buttons");
+        buttons.setWidth("100%");
 
-        Button btnCreate = new Button("save");
+        ArticleButton btnCreate = new ArticleButton("speichern");
         btnCreate.addClickListener(e -> {
             if (this.isValid()) {
                 article.setHeadline(tfHeadline.getValue());
@@ -41,15 +43,15 @@ public class ArticleEditView extends ArticleModificationView implements HasUrlPa
             }
         });
 
-        Button btnDelete = new Button("delete");
+        ArticleButton btnDelete = new ArticleButton("löschen");
         btnDelete.addClickListener(e -> {
             deleteDialog.setArticle(article);
             deleteDialog.open();
         });
 
-        btnToShow = new Button("show");
+        btnToShow = new ArticleButton("anzeigen");
 
-        Button btnToList = new Button("to List");
+        ArticleButton btnToList = new ArticleButton("zur Liste");
         btnToList.addClickListener(e -> {
             btnToList.getUI().ifPresent(ui -> ui.navigate("article"));
         });

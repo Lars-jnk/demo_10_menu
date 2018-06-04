@@ -5,9 +5,9 @@
  */
 package de.lars.menu.view.backend.article;
 
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -17,6 +17,7 @@ import de.lars.menu.entity.facade.ArticleFacade;
 import de.lars.menu.service.PathGenerationService;
 import de.lars.menu.view.backend.article.component.part.ArticlePartEditLayout;
 import de.lars.menu.view.backend.article.component.part.ArticlePartListLayout;
+import de.lars.menu.view.backend.article.component.part.button.ArticleButton;
 import de.lars.menu.view.backend.article.component.part.button.ArticlePartToolButton;
 import de.lars.menu.view.backend.article.component.part.button.ArticlePartToolButtonList;
 import de.lars.menu.view.backend.article.component.part.layout.ArticlePartLinksEditLayout;
@@ -32,33 +33,33 @@ import javax.inject.Inject;
 @StyleSheet("styles/backend/article/article-styles.css")
 public abstract class ArticleModificationView extends VerticalLayout {
 
+    protected TextField tfHeadline;
+    protected TextField tfPath;
+
+    protected ArticlePartListLayout articlePartListLayout;
+    private ArticlePartToolButtonList btnList;
+    private FormLayout header;
+
     @Inject
     protected ArticleFacade facade;
 
     @Inject
     private PathGenerationService pathGenService;
 
-    protected TextField tfHeadline;
-    protected TextField tfPath;
-
-    private FormLayout forms;
-    protected ArticlePartListLayout articlePartListLayout;
-    private ArticlePartToolButtonList btnList;
-
     public ArticleModificationView() {
         setWidth("700px");
         setClassName("be-article-mod-border");
         setSpacing(false);
 
-        forms = new FormLayout();
-        forms.setWidth("100%");
+        header = new FormLayout();
+        header.setClassName("be-article-header");
 
         tfHeadline = new TextField();
         tfHeadline.setWidth("100%");
         tfHeadline.setPlaceholder("Überschrift");
         tfHeadline.setMinLength(Article.HEADLINE_MIN_LEN);
         tfHeadline.setMaxLength(Article.HEADLINE_MAX_LEN);
-        forms.addFormItem(tfHeadline, new Label("Überschrift"));
+        header.addFormItem(tfHeadline, new Label("Überschrift"));
 
         tfPath = new TextField();
         tfPath.setPlaceholder("Pfad");
@@ -66,22 +67,23 @@ public abstract class ArticleModificationView extends VerticalLayout {
         tfPath.setMaxLength(Article.PATH_MAX_LEN);
         tfPath.setPattern(Article.PATH_PATTERN);
 
-        Button btnPath = new Button("generieren");
+        ArticleButton btnPath = new ArticleButton("generieren");
         btnPath.addClickListener(e -> {
-            //Notification.show("hallo", 0, Notification.Position.TOP_START);
             tfPath.setValue(pathGenService.generateFromHeadline(tfHeadline.getValue()));
         });
 
         HorizontalLayout layoutPath = new HorizontalLayout(tfPath, btnPath);
         layoutPath.setWidth("100%");
         layoutPath.expand(tfPath);
-        forms.addFormItem(layoutPath, new Label("Pfad"));
+        Label lblPath = new Label("Pfad");
+        lblPath.addClassName("be-article-header-path-lbl");
+        header.addFormItem(layoutPath, lblPath);
 
-        forms.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 1));
+        header.setResponsiveSteps(new ResponsiveStep("0", 1));
     }
 
     protected void addForms() {
-        add(forms);
+        add(header);
         articlePartListLayout = new ArticlePartListLayout();
         add(articlePartListLayout);
     }
