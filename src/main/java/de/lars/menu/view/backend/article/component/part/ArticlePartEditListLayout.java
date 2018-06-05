@@ -33,8 +33,11 @@ public class ArticlePartEditListLayout extends VerticalLayout {
 
     public List<ArticlePart> getParts() {
         List<ArticlePart> partList = new ArrayList<ArticlePart>();
-        for (ArticlePartEditLayout layout : parts) {
-            partList.add(layout.getEntity());
+        for (int i = 0; i < getComponentCount(); ++i) {
+            ArticlePartEditLayout layout = (ArticlePartEditLayout) getComponentAt(i);
+            ArticlePart articlePart = layout.getEntity();
+            articlePart.setPosition(i);
+            partList.add(articlePart);
         }
         return partList;
     }
@@ -45,6 +48,7 @@ public class ArticlePartEditListLayout extends VerticalLayout {
                 ArticlePartEditLayout layout = new ArticlePartTextEditLayout();
                 layout.setArticlePartListLayout(this);
                 layout.setEntity(articlePart);
+                layout.showRetracted();
                 parts.add(layout);
                 add(layout);
             }

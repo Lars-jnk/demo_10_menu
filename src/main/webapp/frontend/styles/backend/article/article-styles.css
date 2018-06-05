@@ -100,7 +100,12 @@
 
 .be-article-part-content {
     margin-top: 0px;
-    background-color: lightcyan;
     box-sizing: border-box;
     padding: 0px;
+}
+
+.be-article-part-lbl-header {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 }

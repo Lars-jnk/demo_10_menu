@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -24,7 +23,7 @@ import javax.persistence.Table;
 @Table(name = "article_part")/*, uniqueConstraints = {
         @UniqueConstraint(columnNames = {"id", "position"})
 })
-*/
+ */
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class ArticlePart implements Serializable {
 
@@ -38,4 +37,12 @@ public abstract class ArticlePart implements Serializable {
 
     @ManyToOne(optional = false)
     private Article article;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 }

@@ -19,5 +19,5 @@ public class ToolbarButton extends VerticalLayout implements HasSize, HasClickLi
     public ToolbarButton(Component component) {
         add(component);
         setClassName("be-article-part-toolbar-btn");
-    }    
+    }
 }

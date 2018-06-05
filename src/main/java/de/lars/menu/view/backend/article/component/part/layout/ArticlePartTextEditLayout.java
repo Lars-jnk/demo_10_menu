@@ -5,7 +5,6 @@
  */
 package de.lars.menu.view.backend.article.component.part.layout;
 
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import de.lars.menu.entity.article.ArticlePart;
@@ -18,33 +17,47 @@ import de.lars.menu.view.backend.article.component.part.ArticlePartEditLayout;
  */
 public class ArticlePartTextEditLayout extends ArticlePartEditLayout {
 
-    private TextField headline;
-    private TextArea text;
+    private ArticlePartText entityText;
 
-    @Override
-    protected void initContent(VerticalLayout layout) {
+    private TextField headline = null;
+    private TextArea text = null;
+
+    public ArticlePartTextEditLayout() {
+        super();
 
         headline = new TextField("Überschrift");
         headline.setWidth("100%");
         text = new TextArea("Text");
         text.setWidth("100%");
         text.setHeight("200px");
+    }
 
-        add(headline, text);
+    @Override
+    protected void initContentRetracted() {
+        lblHeader.setText(headline.getValue() + " - " + text.getValue());
+        contentLayout.removeAll();
+    }
+
+    @Override
+    protected void initContentFull() {
+        lblHeader.setText("");
+        contentLayout.add(headline, text);
     }
 
     @Override
     protected ArticlePart getEntity() {
-        ArticlePartText entity = new ArticlePartText();
-        entity.setHeadline(headline.getValue());
-        entity.setText(text.getValue());
-        return entity;
+        if (entityText == null) {
+            entityText = new ArticlePartText();
+        }
+        entityText.setHeadline(headline.getValue());
+        entityText.setText(text.getValue());
+        return entityText;
     }
 
     @Override
     protected void setEntity(ArticlePart entity) {
         if (entity instanceof ArticlePartText) {
-            ArticlePartText entityText = (ArticlePartText) entity;
+            entityText = (ArticlePartText) entity;
             headline.setValue(entityText.getHeadline());
             text.setValue(entityText.getText());
         } else {
