@@ -15,11 +15,11 @@ import com.vaadin.flow.component.textfield.TextField;
 import de.lars.menu.entity.article.Article;
 import de.lars.menu.entity.facade.ArticleFacade;
 import de.lars.menu.service.PathGenerationService;
+import de.lars.menu.view.backend.article.component.button.BigButton;
+import de.lars.menu.view.backend.article.component.button.BigButtonList;
+import de.lars.menu.view.backend.article.component.button.RoundedButton;
 import de.lars.menu.view.backend.article.component.part.ArticlePartEditLayout;
-import de.lars.menu.view.backend.article.component.part.ArticlePartListLayout;
-import de.lars.menu.view.backend.article.component.part.button.ArticleButton;
-import de.lars.menu.view.backend.article.component.part.button.ArticlePartToolButton;
-import de.lars.menu.view.backend.article.component.part.button.ArticlePartToolButtonList;
+import de.lars.menu.view.backend.article.component.part.ArticlePartEditListLayout;
 import de.lars.menu.view.backend.article.component.part.layout.ArticlePartLinksEditLayout;
 import de.lars.menu.view.backend.article.component.part.layout.ArticlePartTextEditLayout;
 import java.util.logging.Level;
@@ -36,8 +36,8 @@ public abstract class ArticleModificationView extends VerticalLayout {
     protected TextField tfHeadline;
     protected TextField tfPath;
 
-    protected ArticlePartListLayout articlePartListLayout;
-    private ArticlePartToolButtonList btnList;
+    protected ArticlePartEditListLayout articlePartListLayout;
+    private BigButtonList btnList;
     private FormLayout header;
 
     @Inject
@@ -59,6 +59,7 @@ public abstract class ArticleModificationView extends VerticalLayout {
         tfHeadline.setPlaceholder("Überschrift");
         tfHeadline.setMinLength(Article.HEADLINE_MIN_LEN);
         tfHeadline.setMaxLength(Article.HEADLINE_MAX_LEN);
+        tfHeadline.setErrorMessage("Hallo ddd");
         header.addFormItem(tfHeadline, new Label("Überschrift"));
 
         tfPath = new TextField();
@@ -66,8 +67,9 @@ public abstract class ArticleModificationView extends VerticalLayout {
         tfPath.setMinLength(Article.PATH_MIN_LEN);
         tfPath.setMaxLength(Article.PATH_MAX_LEN);
         tfPath.setPattern(Article.PATH_PATTERN);
+        tfPath.setErrorMessage("Min ddd");
 
-        ArticleButton btnPath = new ArticleButton("generieren");
+        RoundedButton btnPath = new RoundedButton("generieren");
         btnPath.addClickListener(e -> {
             tfPath.setValue(pathGenService.generateFromHeadline(tfHeadline.getValue()));
         });
@@ -84,16 +86,16 @@ public abstract class ArticleModificationView extends VerticalLayout {
 
     protected void addForms() {
         add(header);
-        articlePartListLayout = new ArticlePartListLayout();
+        articlePartListLayout = new ArticlePartEditListLayout();
         add(articlePartListLayout);
     }
 
     protected boolean isValid() {
-        return !tfHeadline.isInvalid();
+        return !tfHeadline.isInvalid() && !tfPath.isInvalid();
     }
 
     public void addPlusBtn() {
-        btnList = new ArticlePartToolButtonList();
+        btnList = new BigButtonList();
 
         addBtn2BtnList("Text", ArticlePartTextEditLayout.class);
         addBtn2BtnList("Links", ArticlePartLinksEditLayout.class);
@@ -102,7 +104,7 @@ public abstract class ArticleModificationView extends VerticalLayout {
     }
 
     private void addBtn2BtnList(String title, Class<? extends ArticlePartEditLayout> aClass) {
-        ArticlePartToolButton btn = new ArticlePartToolButton(title);
+        BigButton btn = new BigButton(title);
         btn.addClickListener(e -> {
             try {
                 articlePartListLayout.addPart(aClass.newInstance());

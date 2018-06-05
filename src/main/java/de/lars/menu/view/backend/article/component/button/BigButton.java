@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.lars.menu.view.backend.article.component.part.button;
+package de.lars.menu.view.backend.article.component.button;
 
 import com.vaadin.flow.component.HasClickListeners;
 import com.vaadin.flow.component.HasSize;
@@ -15,24 +15,24 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
  *
  * @author syrinx
  */
-public class ArticlePartToolButton extends VerticalLayout implements HasSize, HasClickListeners<VerticalLayout> {
+public class BigButton extends VerticalLayout implements HasSize, HasClickListeners<VerticalLayout> {
 
-    public ArticlePartToolButton() {
+    public BigButton() {
         setClassName("be-article-mod-btn");
         setAlignItems(Alignment.CENTER);
         setSpacing(false);
     }
 
-    public ArticlePartToolButton(String text) {
+    public BigButton(String text) {
         this();
         add(new Label(text));
     }
 
-    public ArticlePartToolButton(Icon icon) {
+    public BigButton(Icon icon) {
         this();
         setIcon(icon);
     }
-    
+
     public void setIcon(Icon icon) {
         removeAll();
         add(icon);

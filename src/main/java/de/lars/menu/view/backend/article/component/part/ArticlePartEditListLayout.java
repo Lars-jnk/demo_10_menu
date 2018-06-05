@@ -16,11 +16,11 @@ import java.util.List;
  *
  * @author syrinx
  */
-public class ArticlePartListLayout extends VerticalLayout {
+public class ArticlePartEditListLayout extends VerticalLayout {
 
     private List<ArticlePartEditLayout> parts;
 
-    public ArticlePartListLayout() {
+    public ArticlePartEditListLayout() {
         setClassName("be-article-list-mod-border");
         parts = new ArrayList<ArticlePartEditLayout>();
     }

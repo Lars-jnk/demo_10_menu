@@ -11,7 +11,8 @@
 }
 
 .be-article-btn {
-    height: 20px;
+    margin-top: 4px;
+    height: 16px;
     color: black;
     background-color: lightgray;
     cursor: pointer;

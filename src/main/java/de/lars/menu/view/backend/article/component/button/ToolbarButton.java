@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.lars.menu.view.backend.article.component.part.button;
+package de.lars.menu.view.backend.article.component.button;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasClickListeners;

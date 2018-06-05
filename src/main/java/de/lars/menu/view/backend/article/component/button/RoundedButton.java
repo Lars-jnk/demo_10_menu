@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.lars.menu.view.backend.article.component.part.button;
+package de.lars.menu.view.backend.article.component.button;
 
 import com.vaadin.flow.component.HasClickListeners;
 import com.vaadin.flow.component.HasSize;
@@ -15,15 +15,15 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
  *
  * @author syrinx
  */
-public class ArticleButton extends VerticalLayout implements HasSize, HasClickListeners<VerticalLayout> {
+public class RoundedButton extends VerticalLayout implements HasSize, HasClickListeners<VerticalLayout> {
 
-    public ArticleButton() {
+    public RoundedButton() {
         setClassName("be-article-btn");
         setAlignItems(FlexComponent.Alignment.CENTER);
         setSpacing(false);
     }
 
-    public ArticleButton(String text) {
+    public RoundedButton(String text) {
         this();
         Label lbl = new Label(text);
         lbl.addClassName("be-article-btn-lbl");

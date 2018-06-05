@@ -11,7 +11,7 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import de.lars.menu.entity.article.ArticlePart;
-import de.lars.menu.view.backend.article.component.part.button.ToolbarButton;
+import de.lars.menu.view.backend.article.component.button.ToolbarButton;
 
 /**
  *
@@ -19,7 +19,7 @@ import de.lars.menu.view.backend.article.component.part.button.ToolbarButton;
  */
 public abstract class ArticlePartEditLayout extends VerticalLayout {
 
-    private ArticlePartListLayout listLayout;
+    private ArticlePartEditListLayout listLayout;
 
     public ArticlePartEditLayout() {
         setClassName("be-article-part-mod-border");
@@ -41,7 +41,7 @@ public abstract class ArticlePartEditLayout extends VerticalLayout {
 
     protected abstract void setEntity(ArticlePart entity);
 
-    public void setArticlePartListLayout(ArticlePartListLayout listLayout) {
+    public void setArticlePartListLayout(ArticlePartEditListLayout listLayout) {
         this.listLayout = listLayout;
     }
 
