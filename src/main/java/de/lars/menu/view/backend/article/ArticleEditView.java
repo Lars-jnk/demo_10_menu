@@ -5,13 +5,13 @@
  */
 package de.lars.menu.view.backend.article;
 
-import de.lars.menu.view.backend.article.component.ArticleDeleteDialog;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 import de.lars.menu.entity.article.Article;
 import de.lars.menu.view.backend.BackendView;
+import de.lars.menu.view.backend.article.component.ArticleDeleteDialog;
 import de.lars.menu.view.backend.article.component.button.RoundedButton;
 import javax.inject.Inject;
 
@@ -31,7 +31,6 @@ public class ArticleEditView extends ArticleModificationView implements HasUrlPa
     public ArticleEditView() {
         HorizontalLayout buttons = new HorizontalLayout();
         buttons.addClassName("be-article-buttons");
-        buttons.setWidth("100%");
 
         RoundedButton btnCreate = new RoundedButton("speichern");
         btnCreate.addClickListener(e -> {
