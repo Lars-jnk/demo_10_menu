@@ -1,0 +1,30 @@
+/*
+::-webkit-scrollbar { 
+    display: none; 
+}
+*/
+
+body {
+    width: 100%;
+}
+
+.fe-main {
+    /*height: 100%;*/
+    /*height: 200%;*/
+    margin: 0;
+    padding: 0px;
+    width: 100%;
+}
+
+.fe-main-image {
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fe-main-content {
+      padding: 0px;
+    width: 100%;
+}
