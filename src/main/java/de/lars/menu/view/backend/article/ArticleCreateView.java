@@ -15,7 +15,7 @@ import de.lars.menu.view.backend.BackendView;
  *
  * @author syrinx
  */
-@Route(value = "article/create", layout = BackendView.class)
+@Route(value = "backend/article/create", layout = BackendView.class)
 public class ArticleCreateView extends ArticleModificationView {
 
     public ArticleCreateView() {
@@ -25,13 +25,13 @@ public class ArticleCreateView extends ArticleModificationView {
         btnCreate.addClickListener(e -> {
             if (this.isValid()) {
                 facade.create(new Article(tfPath.getValue(), tfHeadline.getValue()));
-                btnCreate.getUI().ifPresent(ui -> ui.navigate("article"));
+                btnCreate.getUI().ifPresent(ui -> ui.navigate("backend/article"));
             }
         });
 
         Button btnToList = new Button("to List");
         btnToList.addClickListener(e -> {
-            btnToList.getUI().ifPresent(ui -> ui.navigate("article"));
+            btnToList.getUI().ifPresent(ui -> ui.navigate("backend/article"));
         });
         buttons.add(btnCreate, btnToList);
 

@@ -22,7 +22,7 @@ import javax.inject.Inject;
  *
  * @author syrinx
  */
-@Route(value = "article/show", layout = BackendView.class)
+@Route(value = "backend/article/show", layout = BackendView.class)
 public class ArticleShowView extends VerticalLayout implements HasUrlParameter<Long> {
 
     @Inject
@@ -38,7 +38,7 @@ public class ArticleShowView extends VerticalLayout implements HasUrlParameter<L
 
         Button btnToList = new Button("to List");
         btnToList.addClickListener(e -> {
-            btnToList.getUI().ifPresent(ui -> ui.navigate("article"));
+            btnToList.getUI().ifPresent(ui -> ui.navigate("backend/article"));
         });
 
         btnEdit = new Button("Edit");
@@ -69,7 +69,7 @@ public class ArticleShowView extends VerticalLayout implements HasUrlParameter<L
         tfPath.setValue(article.getPath());
 
         btnEdit.addClickListener(e -> {
-            btnEdit.getUI().ifPresent(ui -> ui.navigate("article/edit/" + articleId));
+            btnEdit.getUI().ifPresent(ui -> ui.navigate("backend/article/edit/" + articleId));
         });
     }
 }

@@ -6,14 +6,11 @@
 package de.lars.menu.view.backend.article;
 
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
-import com.vaadin.flow.router.ParentLayout;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.router.RouterLink;
 import de.lars.menu.entity.article.Article;
 import de.lars.menu.entity.facade.ArticleFacade;
@@ -25,7 +22,7 @@ import javax.inject.Inject;
  *
  * @author syrinx
  */
-@Route(value = "article", layout = BackendView.class)
+@Route(value = "backend/article", layout = BackendView.class)
 public class ArticleListView extends VerticalLayout implements BeforeEnterObserver {
 
     @Inject
@@ -46,7 +43,7 @@ public class ArticleListView extends VerticalLayout implements BeforeEnterObserv
         );
         grid.setSizeFull();
 
-        add(new RouterLink("Create", ArticleCreateView.class));
+        add(new RouterLink("create", ArticleCreateView.class));
         add(grid);
     }
 

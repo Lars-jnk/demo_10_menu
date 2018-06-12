@@ -5,16 +5,16 @@
  */
 package de.lars.menu.view.backend.demo;
 
-import de.lars.menu.view.backend.BackendView;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import de.lars.menu.view.backend.BackendView;
 
 /**
  *
  * @author syrinx
  */
-@Route(value = "form2", layout = BackendView.class)
+@Route(value = "backend/form2", layout = BackendView.class)
 public class Form2View extends FormLayout {
 
     public Form2View() {

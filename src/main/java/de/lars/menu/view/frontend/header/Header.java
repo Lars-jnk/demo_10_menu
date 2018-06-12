@@ -5,17 +5,28 @@
  */
 package de.lars.menu.view.frontend.header;
 
-import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 /**
  *
  * @author syrinx
  */
-public class Header extends VerticalLayout {
+public class Header extends HorizontalLayout {
 
     public Header() {
-        add(new Label("juhu"));
         setClassName("fe-header");
+
+        HeaderButton btn = new HeaderButton("test");
+        btn.addClickListener(e -> {
+            Notification.show("hallo :D", 0, Notification.Position.TOP_START);
+        });
+        add(btn);
+
+        btn = new HeaderButton("Backend");
+        btn.addClickListener(e -> {
+            getUI().ifPresent(ui -> ui.navigate("backend"));
+        });
+        add(btn);
     }
 }

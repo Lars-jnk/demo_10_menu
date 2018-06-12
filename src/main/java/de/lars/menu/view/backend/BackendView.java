@@ -9,14 +9,14 @@ import de.lars.menu.view.backend.menu.Menu;
 /**
  * The main view contains a button and a template element.
  */
-@Route("")
+@Route("backend")
 @PageTitle("Backend")
 public class BackendView extends HorizontalLayout implements RouterLayout {
 
-    public BackendView() {        
+    public BackendView() {
         setWidth("100%");
         setClassName("be-content");
-        
+
         add(new Menu());
     }
 }

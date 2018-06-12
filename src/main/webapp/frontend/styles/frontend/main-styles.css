@@ -9,9 +9,9 @@ body {
 }
 
 .fe-header {
-    background-color: burlywood;
+    background-color: black;
     width: 700px;
-    height: 40px;
+    height: 60px;
     z-index: 1;
 }
 
@@ -20,6 +20,18 @@ body {
     padding: 0px;
     align-items: center;
     position: fixed;
+}
+
+.fe-header-btn {
+    
+}
+
+.fe-header-btn-txt {
+    color: white;
+}
+
+.fe-header-btn-txt:hover {
+    color: green;
 }
 
 .fe-main {

@@ -19,7 +19,7 @@ import javax.inject.Inject;
  *
  * @author syrinx
  */
-@Route(value = "article/edit", layout = BackendView.class)
+@Route(value = "backend/article/edit", layout = BackendView.class)
 public class ArticleEditView extends ArticleModificationView implements HasUrlParameter<Long> {
 
     @Inject
@@ -39,7 +39,7 @@ public class ArticleEditView extends ArticleModificationView implements HasUrlPa
                 article.setPath(tfPath.getValue());
                 article.setParts(articlePartListLayout.getParts());
                 facade.edit(article);
-                btnCreate.getUI().ifPresent(ui -> ui.navigate("article"));
+                btnCreate.getUI().ifPresent(ui -> ui.navigate("backend/article"));
             }
         });
 
@@ -53,7 +53,7 @@ public class ArticleEditView extends ArticleModificationView implements HasUrlPa
 
         RoundedButton btnToList = new RoundedButton("zur Liste");
         btnToList.addClickListener(e -> {
-            btnToList.getUI().ifPresent(ui -> ui.navigate("article"));
+            btnToList.getUI().ifPresent(ui -> ui.navigate("backend/article"));
         });
         buttons.add(btnCreate, btnDelete, btnToShow, btnToList);
 
@@ -70,7 +70,7 @@ public class ArticleEditView extends ArticleModificationView implements HasUrlPa
         articlePartListLayout.setParts(article.getParts());
 
         btnToShow.addClickListener(e -> {
-            btnToShow.getUI().ifPresent(ui -> ui.navigate("article/show/" + articleId));
+            btnToShow.getUI().ifPresent(ui -> ui.navigate("backend/article/show/" + articleId));
         });
     }
 }

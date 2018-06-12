@@ -19,7 +19,7 @@ import javax.inject.Inject;
  *
  * @author syrinx
  */
-@Route(value = "service", layout = BackendView.class)
+@Route(value = "backend/service", layout = BackendView.class)
 @PageTitle("DemoService")
 public class ServiceView extends VerticalLayout {
 

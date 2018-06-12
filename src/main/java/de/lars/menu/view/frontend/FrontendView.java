@@ -20,7 +20,7 @@ import de.lars.menu.view.frontend.header.HeaderBox;
  *
  * @author syrinx
  */
-@Route("front")
+@Route("")
 @PageTitle("Baltrum")
 @StyleSheet("styles/frontend/main-styles.css")
 public class FrontendView extends VerticalLayout implements RouterLayout {

@@ -5,16 +5,16 @@
  */
 package de.lars.menu.view.backend.demo;
 
-import de.lars.menu.view.backend.BackendView;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import de.lars.menu.view.backend.BackendView;
 
 /**
  *
  * @author syrinx
  */
-@Route(value = "home", layout = BackendView.class)
+@Route(value = "backend/home", layout = BackendView.class)
 public class HomeView extends VerticalLayout {
 
     public HomeView() {
