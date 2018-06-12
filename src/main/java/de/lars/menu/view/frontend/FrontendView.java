@@ -6,13 +6,15 @@
 package de.lars.menu.view.frontend;
 
 import com.vaadin.flow.component.dependency.StyleSheet;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
+import de.lars.menu.view.frontend.content.TextBgImageContent;
+import de.lars.menu.view.frontend.header.Header;
+import de.lars.menu.view.frontend.header.HeaderBox;
 
 /**
  *
@@ -28,11 +30,13 @@ public class FrontendView extends VerticalLayout implements RouterLayout {
         setSpacing(false);
         setClassName("fe-main");
 
-        //this.getParent().get().getElement().setAttribute("width", "100%");
-        Div image = new Div();
-        image.getStyle().set("background-image", "url(http://localhost:8080/demo_10_menu_git/image?name=img.jpg)");
-        image.setClassName("fe-main-image");
-        add(image);
+        HeaderBox headerBox = new HeaderBox();
+        Header header = new Header();
+        headerBox.add(header);
+        add(headerBox);
+
+        TextBgImageContent mainContent = new TextBgImageContent("http://localhost:8080/demo_10_menu_git/image?name=img.jpg");
+        add(mainContent);
 
         VerticalLayout layout = new VerticalLayout();
         layout.setClassName("fe-main-content");
@@ -40,10 +44,7 @@ public class FrontendView extends VerticalLayout implements RouterLayout {
         layout.add(new TextField("adfgagg"));
         add(layout);
 
-        image = new Div();
-        image.getStyle().set("background-image", "url(http://localhost:8080/demo_10_menu_git/image?name=P1070112.JPG)");
-        image.setClassName("fe-main-image");
-        add(image);
-
+        mainContent = new TextBgImageContent("http://localhost:8080/demo_10_menu_git/image?name=P1070112.JPG");
+        add(mainContent);
     }
 }

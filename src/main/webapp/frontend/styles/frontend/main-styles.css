@@ -8,6 +8,20 @@ body {
     width: 100%;
 }
 
+.fe-header {
+    background-color: burlywood;
+    width: 700px;
+    height: 40px;
+    z-index: 1;
+}
+
+.fe-headerbox {
+    width: 100%;
+    padding: 0px;
+    align-items: center;
+    position: fixed;
+}
+
 .fe-main {
     /*height: 100%;*/
     /*height: 200%;*/
@@ -16,15 +30,28 @@ body {
     width: 100%;
 }
 
-.fe-main-image {
+.fe-main-image-background {
     height: 100vh;
     width: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    align-items: center;
+}
+
+.fe-main-image-headline {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.fe-main-image-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
 }
 
 .fe-main-content {
-      padding: 0px;
+    padding: 0px;
     width: 100%;
 }
