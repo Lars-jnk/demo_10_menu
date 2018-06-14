@@ -10,8 +10,6 @@ import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.BeforeEvent;
-import com.vaadin.flow.router.HasUrlParameter;
 import com.wcs.vaadin.flow.cdi.UIScoped;
 import de.lars.menu.entity.article.Article;
 import de.lars.menu.entity.facade.ArticleFacade;
@@ -39,7 +37,7 @@ public class ArticleDeleteDialog extends Dialog {
         Button confirmButton = new Button("Confirm", event -> {
             facade.remove(article);
             close();
-            getUI().ifPresent(ui -> ui.navigate("article"));
+            getUI().ifPresent(ui -> ui.navigate("backend/article"));
         });
         Button cancelButton = new Button("Cancel", event -> {
             close();

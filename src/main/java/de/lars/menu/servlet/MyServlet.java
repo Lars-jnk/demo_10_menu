@@ -5,13 +5,23 @@
  */
 package de.lars.menu.servlet;
 
+import com.vaadin.flow.server.ServiceException;
+import com.vaadin.flow.server.SessionDestroyEvent;
+import com.vaadin.flow.server.SessionDestroyListener;
+import com.vaadin.flow.server.SessionInitEvent;
+import com.vaadin.flow.server.SessionInitListener;
+import com.vaadin.flow.server.VaadinServletConfiguration;
+import com.wcs.vaadin.flow.cdi.server.CdiVaadinServlet;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+
 /**
  *
  * @author reuss
  */
-//@WebServlet(urlPatterns = "/*", name = "UIServlet", asyncSupported = true)
-//@VaadinServletConfiguration(productionMode = false, heartbeatInterval = 20)
-/*public class MyServlet extends VaadinServlet
+@WebServlet(urlPatterns = "/*", name = "UIServlet", asyncSupported = true)
+@VaadinServletConfiguration(productionMode = false, heartbeatInterval = 20)
+public class MyServlet extends CdiVaadinServlet
         implements SessionInitListener, SessionDestroyListener {
 
     @Override
@@ -38,4 +48,3 @@ package de.lars.menu.servlet;
         System.out.println("session destroy()");
     }
 }
- */

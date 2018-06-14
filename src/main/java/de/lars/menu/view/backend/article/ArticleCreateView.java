@@ -15,11 +15,10 @@ import de.lars.menu.view.backend.BackendView;
  *
  * @author syrinx
  */
-@Route(value = BackendView.ROUTE + "/" + ArticleListView.ROUTE + "/" + ArticleCreateView.ROUTE,
-        layout = BackendView.class)
+@Route(value = ArticleCreateView.ROUTE, layout = BackendView.class)
 public class ArticleCreateView extends ArticleModificationView {
 
-    public static final String ROUTE = "create";
+    public static final String ROUTE = ArticleListView.ROUTE + "/create";
 
     public ArticleCreateView() {
         HorizontalLayout buttons = new HorizontalLayout();

@@ -19,11 +19,10 @@ import javax.inject.Inject;
  *
  * @author syrinx
  */
-@Route(value = BackendView.ROUTE + "/" + ArticleListView.ROUTE + "/" + ArticleEditView.ROUTE,
-        layout = BackendView.class)
+@Route(value = ArticleEditView.ROUTE, layout = BackendView.class)
 public class ArticleEditView extends ArticleModificationView implements HasUrlParameter<Long> {
 
-    public static final String ROUTE = "edit";
+    public static final String ROUTE = ArticleListView.ROUTE + "/edit";
 
     @Inject
     private ArticleDeleteDialog deleteDialog;
