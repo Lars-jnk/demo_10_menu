@@ -22,8 +22,11 @@ import javax.inject.Inject;
  *
  * @author syrinx
  */
-@Route(value = "backend/article/show", layout = BackendView.class)
+@Route(value = BackendView.ROUTE + "/" + ArticleListView.ROUTE + "/" + ArticleShowView.ROUTE,
+        layout = BackendView.class)
 public class ArticleShowView extends VerticalLayout implements HasUrlParameter<Long> {
+
+    public static final String ROUTE = "show";
 
     @Inject
     private ArticleFacade facade;

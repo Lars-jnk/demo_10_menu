@@ -45,22 +45,31 @@ body {
 .fe-main-image-background {
     height: 100vh;
     width: 100%;
+    padding: 0px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     align-items: center;
 }
 
+.fe-main-image-text-content {
+    margin: auto;
+    max-width: 300px;    
+}
+
 .fe-main-image-headline {
-    position: absolute;
-    left: 50%;
-    top: 50%;
+    font-size: 40px;
+    font-weight: 600;
+    margin-left: auto;
+    margin-right: auto;
+    color: green;
 }
 
 .fe-main-image-text {
-    position: absolute;
-    left: 50%;
-    top: 50%;
+    font-size: 24px;
+    color: green;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .fe-main-content {

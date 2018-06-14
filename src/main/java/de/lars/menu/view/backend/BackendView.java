@@ -9,9 +9,11 @@ import de.lars.menu.view.backend.menu.Menu;
 /**
  * The main view contains a button and a template element.
  */
-@Route("backend")
+@Route(BackendView.ROUTE)
 @PageTitle("Backend")
 public class BackendView extends HorizontalLayout implements RouterLayout {
+
+    public static final String ROUTE = "backend";
 
     public BackendView() {
         setWidth("100%");

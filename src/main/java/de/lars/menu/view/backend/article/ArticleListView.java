@@ -22,8 +22,11 @@ import javax.inject.Inject;
  *
  * @author syrinx
  */
-@Route(value = "backend/article", layout = BackendView.class)
+@Route(value = BackendView.ROUTE + "/" + ArticleListView.ROUTE,
+        layout = BackendView.class)
 public class ArticleListView extends VerticalLayout implements BeforeEnterObserver {
+
+    public static final String ROUTE = "article";
 
     @Inject
     private ArticleFacade facade;

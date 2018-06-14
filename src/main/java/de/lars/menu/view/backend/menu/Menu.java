@@ -7,11 +7,11 @@ package de.lars.menu.view.backend.menu;
 
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import de.lars.menu.view.backend.article.ArticleListView;
 import de.lars.menu.view.backend.demo.Form2View;
 import de.lars.menu.view.backend.demo.FormView;
 import de.lars.menu.view.backend.demo.HomeView;
 import de.lars.menu.view.backend.demo.ServiceView;
-import de.lars.menu.view.backend.article.ArticleListView;
 
 /**
  *

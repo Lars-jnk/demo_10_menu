@@ -14,6 +14,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
  */
 public class TextBgImageContent extends VerticalLayout {
 
+    private final VerticalLayout textContent;
     private final Label lblHeadline;
     private final Label lblText;
 
@@ -21,13 +22,18 @@ public class TextBgImageContent extends VerticalLayout {
         getStyle().set("background-image", "url(" + imageUrl + ")");
         setClassName("fe-main-image-background");
 
+        textContent = new VerticalLayout();
+        textContent.setClassName("fe-main-image-text-content");
+
         lblHeadline = new Label("hallo");
         lblHeadline.setClassName("fe-main-image-headline");
-        add(lblHeadline);
+        textContent.add(lblHeadline);
 
         lblText = new Label("das ist längerer text");
         lblText.setClassName("fe-main-image-text");
-        add(lblText);
+        textContent.add(lblText);
+
+        add(textContent);
     }
 
     public void setHeadline(String headline) {
