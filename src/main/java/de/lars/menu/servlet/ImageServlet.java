@@ -23,7 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/image", name = "DynamicContentServletImage")
 public class ImageServlet extends HttpServlet {
 
-    final String DIR = "k:\\Programmierung\\Java\\netbeans\\demo_10_menu_git\\src\\main\\webapp\\images\\";
+    //final String DIR = "k:\\Programmierung\\Java\\netbeans\\demo_10_menu_git\\src\\main\\webapp\\images\\";
+    final String DIR = "c:\\_Tests\\netbeans\\demo_10_menu_git\\src\\main\\webapp\\images\\";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
