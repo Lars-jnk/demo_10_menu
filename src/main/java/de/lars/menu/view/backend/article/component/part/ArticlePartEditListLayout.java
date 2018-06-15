@@ -8,6 +8,8 @@ package de.lars.menu.view.backend.article.component.part;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import de.lars.menu.entity.article.ArticlePart;
 import de.lars.menu.entity.article.ArticlePartText;
+import de.lars.menu.entity.article.ArticlePartTextBgImage;
+import de.lars.menu.view.backend.article.component.part.layout.ArticlePartTextBgImageEditLayout;
 import de.lars.menu.view.backend.article.component.part.layout.ArticlePartTextEditLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ public class ArticlePartEditListLayout extends VerticalLayout {
     }
 
     public List<ArticlePart> getParts() {
-        List<ArticlePart> partList = new ArrayList<ArticlePart>();
+        List<ArticlePart> partList = new ArrayList<>();
         for (int i = 0; i < getComponentCount(); ++i) {
             ArticlePartEditLayout layout = (ArticlePartEditLayout) getComponentAt(i);
             ArticlePart articlePart = layout.getEntity();
@@ -43,9 +45,15 @@ public class ArticlePartEditListLayout extends VerticalLayout {
     }
 
     public void setParts(List<ArticlePart> articleParts) {
+        ArticlePartEditLayout layout;
         for (ArticlePart articlePart : articleParts) {
+            layout = null;
             if (articlePart instanceof ArticlePartText) {
-                ArticlePartEditLayout layout = new ArticlePartTextEditLayout();
+                layout = new ArticlePartTextEditLayout();
+            } else if (articlePart instanceof ArticlePartTextBgImage) {
+                layout = new ArticlePartTextBgImageEditLayout();
+            }
+            if (layout != null) {
                 layout.setArticlePartListLayout(this);
                 layout.setEntity(articlePart);
                 layout.showRetracted();

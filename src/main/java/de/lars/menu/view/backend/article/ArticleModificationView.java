@@ -20,7 +20,7 @@ import de.lars.menu.view.backend.article.component.button.BigButtonList;
 import de.lars.menu.view.backend.article.component.button.RoundedButton;
 import de.lars.menu.view.backend.article.component.part.ArticlePartEditLayout;
 import de.lars.menu.view.backend.article.component.part.ArticlePartEditListLayout;
-import de.lars.menu.view.backend.article.component.part.layout.ArticlePartLinksEditLayout;
+import de.lars.menu.view.backend.article.component.part.layout.ArticlePartTextBgImageEditLayout;
 import de.lars.menu.view.backend.article.component.part.layout.ArticlePartTextEditLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -98,7 +98,7 @@ public abstract class ArticleModificationView extends VerticalLayout {
         btnList = new BigButtonList();
 
         addBtn2BtnList("Text", ArticlePartTextEditLayout.class);
-        addBtn2BtnList("Links", ArticlePartLinksEditLayout.class);
+        addBtn2BtnList("Text mit Hintergrundbild", ArticlePartTextBgImageEditLayout.class);
 
         add(btnList);
     }
