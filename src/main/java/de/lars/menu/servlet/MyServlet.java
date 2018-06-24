@@ -12,6 +12,9 @@ import com.vaadin.flow.server.SessionInitEvent;
 import com.vaadin.flow.server.SessionInitListener;
 import com.vaadin.flow.server.VaadinServletConfiguration;
 import com.wcs.vaadin.flow.cdi.server.CdiVaadinServlet;
+import de.lars.menu.service.SessionService;
+import java.util.Date;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
@@ -20,9 +23,13 @@ import javax.servlet.annotation.WebServlet;
  * @author reuss
  */
 @WebServlet(urlPatterns = "/*", name = "UIServlet", asyncSupported = true)
+//@VaadinServletConfiguration(productionMode = false, heartbeatInterval = 20, closeIdleSessions = true)
 @VaadinServletConfiguration(productionMode = false, heartbeatInterval = 20)
 public class MyServlet extends CdiVaadinServlet
         implements SessionInitListener, SessionDestroyListener {
+
+    @Inject
+    private SessionService sessionService;
 
     @Override
     protected void servletInitialized() throws ServletException {
@@ -30,21 +37,21 @@ public class MyServlet extends CdiVaadinServlet
         getService().addSessionInitListener(this);
         getService().addSessionDestroyListener(this);
 
-        System.out.println("init()");
     }
 
     @Override
-    public void sessionInit(SessionInitEvent event)
-            throws ServiceException {
+    public void sessionInit(SessionInitEvent event) throws ServiceException {
 
-        System.out.println("session init() "
+        System.out.println(new Date() + "  -  session init() "
                 + " Session-ID: " + event.getSession().getSession().getId()
                 + " CSRF: " + event.getSession().getCsrfToken()
         );
+
+        sessionService.createSession(event.getSession());
     }
 
     @Override
     public void sessionDestroy(SessionDestroyEvent event) {
-        System.out.println("session destroy()");
+        System.out.println(new Date() + "  -  session destroy()");
     }
 }

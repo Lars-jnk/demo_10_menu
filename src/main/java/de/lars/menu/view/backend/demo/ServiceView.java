@@ -9,9 +9,12 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import de.lars.menu.service.Service;
+import de.lars.menu.service.SessionService;
 import de.lars.menu.view.backend.BackendView;
 import javax.inject.Inject;
 
@@ -21,7 +24,7 @@ import javax.inject.Inject;
  */
 @Route(value = "backend/service", layout = BackendView.class)
 @PageTitle("DemoService")
-public class ServiceView extends VerticalLayout {
+public class ServiceView extends VerticalLayout implements BeforeEnterObserver {
 
     public static String ID_LABEL = "demo_label";
     public static String ID_TEXTFIELD = "demo_textfield";
@@ -29,6 +32,9 @@ public class ServiceView extends VerticalLayout {
 
     @Inject
     private Service service;
+
+    @Inject
+    private SessionService sessionService;
 
     public ServiceView() {
         Label label = new Label("empty");
@@ -41,5 +47,10 @@ public class ServiceView extends VerticalLayout {
         button.setId(ID_BUTTON);
 
         add(tf, button, label);
+    }
+
+    @Override
+    public void beforeEnter(BeforeEnterEvent bee) {
+        sessionService.hello();
     }
 }

@@ -12,9 +12,11 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
+import de.lars.menu.service.SessionService;
 import de.lars.menu.view.frontend.content.TextBgImageContent;
 import de.lars.menu.view.frontend.header.Header;
 import de.lars.menu.view.frontend.header.HeaderBox;
+import javax.inject.Inject;
 
 /**
  *
@@ -24,6 +26,9 @@ import de.lars.menu.view.frontend.header.HeaderBox;
 @PageTitle("Baltrum")
 @StyleSheet("styles/frontend/main-styles.css")
 public class FrontendView extends VerticalLayout implements RouterLayout {
+
+    @Inject
+    private SessionService sessionService;
 
     public FrontendView() {
         setWidth("100%");

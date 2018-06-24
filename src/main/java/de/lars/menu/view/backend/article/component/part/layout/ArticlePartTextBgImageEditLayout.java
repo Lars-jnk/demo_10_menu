@@ -8,8 +8,8 @@ package de.lars.menu.view.backend.article.component.part.layout;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
-import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.textfield.TextArea;
+import com.vaadin.flow.component.upload.Upload;
 import de.lars.menu.entity.article.ArticlePart;
 import de.lars.menu.entity.article.ArticlePartTextBgImage;
 import de.lars.menu.view.backend.article.component.part.ArticlePartEditLayout;
@@ -43,7 +43,15 @@ public class ArticlePartTextBgImageEditLayout extends ArticlePartEditLayout {
     @Override
     protected void initContentFull() {
         lblHeader.setText("");
-        contentLayout.add(new Tabs(getTextTab(), buildImageTab()));
+
+        contentLayout.add(text);
+
+        Upload upload = new Upload();
+        upload.setMaxFiles(1);
+        upload.setAcceptedFileTypes("image/jpeg", "image/png", "image/gif");
+
+        contentLayout.add(upload);
+        //contentLayout.add(new Tabs(getTextTab(), buildImageTab()));
     }
 
     private Tab getTextTab() {
