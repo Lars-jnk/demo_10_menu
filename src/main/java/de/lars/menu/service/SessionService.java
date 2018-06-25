@@ -25,7 +25,7 @@ public class SessionService implements Serializable {
     @Inject
     private SessionFacade facade;
 
-    private Session session;
+    private Session session = null;
 
     public SessionService() {
         System.out.println(new Date() + "  -  SessionService()");
@@ -50,11 +50,39 @@ public class SessionService implements Serializable {
         facade.create(session);
     }
 
+    public boolean isLoggedIn() {
+        if (session != null) {
+            return session.user != null;
+        }
+        return false;
+    }
+
     public void destroySession() {
         if (session != null) {
             session.destroySession();
             facade.edit(session);
         }
+    }
+
+    public void login(String value) {
+        if (session != null) {
+            session.user = value;
+            facade.edit(session);
+            System.out.println("login done");
+        }
+    }
+
+    public void logout() {
+        if (session != null) {
+            session.loggedout = true;
+            facade.edit(session);
+            session.user = null;
+            System.out.println("logout done");
+        }
+    }
+
+    public Session getSession() {
+        return session;
     }
 
     public void hello() {

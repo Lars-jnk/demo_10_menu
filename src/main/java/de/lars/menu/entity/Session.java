@@ -46,8 +46,16 @@ public class Session implements Serializable {
     @Column(name = "csrf_token")
     private String csrfToken;
 
+    @Size(max = 32)
+    @Column(name = "user")
+    public String user;
+
+    @Column(name = "loggedout")
+    public boolean loggedout;
+
     public Session() {
         this.created = new Date();
+        this.loggedout = false;
     }
 
     public void destroySession() {
