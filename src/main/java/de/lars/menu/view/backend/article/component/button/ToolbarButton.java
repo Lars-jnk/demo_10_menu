@@ -5,8 +5,8 @@
  */
 package de.lars.menu.view.backend.article.component.button;
 
+import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.HasClickListeners;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
@@ -14,7 +14,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
  *
  * @author syrinx
  */
-public class ToolbarButton extends VerticalLayout implements HasSize, HasClickListeners<VerticalLayout> {
+public class ToolbarButton extends VerticalLayout implements HasSize, ClickNotifier<VerticalLayout> {
 
     public ToolbarButton(Component component) {
         add(component);

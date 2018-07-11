@@ -6,9 +6,7 @@
 package de.lars.menu.view.backend.article.component.button;
 
 import com.vaadin.flow.component.HasSize;
-import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.icon.VaadinIcons;
-import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 /**
@@ -42,9 +40,9 @@ public class BigButtonList extends VerticalLayout implements HasSize {
     private void changeStyle() {
         createButtons.setClassName("be-article-mod-create-btns-hide", stateHidden);
         if (stateHidden) {
-            addBtn.setIcon(VaadinIcons.PLUS.create());
+            addBtn.setIcon(VaadinIcon.PLUS.create());
         } else {
-            addBtn.setIcon(VaadinIcons.MINUS.create());
+            addBtn.setIcon(VaadinIcon.MINUS.create());
         }
     }
 

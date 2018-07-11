@@ -23,7 +23,6 @@ import javax.servlet.annotation.WebServlet;
  * @author reuss
  */
 @WebServlet(urlPatterns = "/*", name = "UIServlet", asyncSupported = true)
-//@VaadinServletConfiguration(productionMode = false, heartbeatInterval = 20, closeIdleSessions = true)
 @VaadinServletConfiguration(productionMode = false, heartbeatInterval = 20)
 public class MyServlet extends CdiVaadinServlet
         implements SessionInitListener, SessionDestroyListener {

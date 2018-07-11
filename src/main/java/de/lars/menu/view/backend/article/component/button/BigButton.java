@@ -5,7 +5,7 @@
  */
 package de.lars.menu.view.backend.article.component.button;
 
-import com.vaadin.flow.component.HasClickListeners;
+import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
@@ -15,7 +15,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
  *
  * @author syrinx
  */
-public class BigButton extends VerticalLayout implements HasSize, HasClickListeners<VerticalLayout> {
+public class BigButton extends VerticalLayout implements HasSize, ClickNotifier<VerticalLayout> {
 
     public BigButton() {
         setClassName("be-article-mod-btn");

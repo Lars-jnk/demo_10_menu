@@ -5,7 +5,7 @@
  */
 package de.lars.menu.view.backend.menu;
 
-import com.vaadin.flow.component.HasClickListeners;
+import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
@@ -13,7 +13,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
  *
  * @author syrinx
  */
-public class MenuGroupHeader extends VerticalLayout implements HasSize, HasClickListeners<VerticalLayout> {
+public class MenuGroupHeader extends VerticalLayout implements HasSize, ClickNotifier<VerticalLayout> {
 
     private boolean open = false;
     private MenuGroupHeaderText lblText;

@@ -6,7 +6,7 @@
 package de.lars.menu.view.backend.article.component.part;
 
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.icon.VaadinIcons;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -55,14 +55,14 @@ public abstract class ArticlePartEditLayout extends VerticalLayout {
         this.retracted = true;
         initContentRetracted();
         btnRetractOrFull.removeAll();
-        btnRetractOrFull.add(VaadinIcons.PLUS_CIRCLE_O.create());
+        btnRetractOrFull.add(VaadinIcon.PLUS_CIRCLE_O.create());
     }
 
     public void showFull() {
         this.retracted = false;
         initContentFull();
         btnRetractOrFull.removeAll();
-        btnRetractOrFull.add(VaadinIcons.MINUS_CIRCLE_O.create());
+        btnRetractOrFull.add(VaadinIcon.MINUS_CIRCLE_O.create());
     }
 
     private void addToolbar() {
@@ -90,7 +90,7 @@ public abstract class ArticlePartEditLayout extends VerticalLayout {
     }
 
     private ToolbarButton createRetractOrFullBtn() {
-        btnRetractOrFull = new ToolbarButton(VaadinIcons.PLUS_CIRCLE_O.create());
+        btnRetractOrFull = new ToolbarButton(VaadinIcon.PLUS_CIRCLE_O.create());
         //btnRetractOrFull.setIcon(VaadinIcons.PLUS_CIRCLE_O.create());
         btnRetractOrFull.addClickListener(e -> {
             if (retracted) {
@@ -103,19 +103,19 @@ public abstract class ArticlePartEditLayout extends VerticalLayout {
     }
 
     private ToolbarButton createDownBtn() {
-        ToolbarButton btn = new ToolbarButton(VaadinIcons.ARROW_DOWN.create());
+        ToolbarButton btn = new ToolbarButton(VaadinIcon.ARROW_DOWN.create());
         btn.addClickListener(e -> listLayout.moveViewDown(this));
         return btn;
     }
 
     private ToolbarButton createUpBtn() {
-        ToolbarButton btn = new ToolbarButton(VaadinIcons.ARROW_UP.create());
+        ToolbarButton btn = new ToolbarButton(VaadinIcon.ARROW_UP.create());
         btn.addClickListener(e -> listLayout.moveViewUp(this));
         return btn;
     }
 
     private ToolbarButton createRemoveBtn() {
-        ToolbarButton btn = new ToolbarButton(VaadinIcons.CLOSE.create());
+        ToolbarButton btn = new ToolbarButton(VaadinIcon.CLOSE.create());
         btn.addClickListener(e -> listLayout.removeView(this));
         return btn;
     }

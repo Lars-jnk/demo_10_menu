@@ -20,7 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class DemoServiceTest {
 
-    @Test
+    //@Test
     public void testServiceView() throws InterruptedException {
         //System.setProperty("webdriver.gecko.driver", "k:\\Programme\\_WebDriver\\geckodriver.exe");
 

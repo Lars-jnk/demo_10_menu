@@ -23,8 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/image", name = "DynamicContentServletImage")
 public class ImageServlet extends HttpServlet {
 
-    final String DIR = "k:\\Programmierung\\Java\\netbeans\\demo_10_menu_git\\src\\main\\webapp\\images\\";
+    //final String DIR = "k:\\Programmierung\\Java\\netbeans\\demo_10_menu_git\\src\\main\\webapp\\images\\";
     //final String DIR = "c:\\_Tests\\netbeans\\demo_10_menu_git\\src\\main\\webapp\\images\\";
+    final String DIR = "C:\\Users\\Tobias\\Desktop\\vaadin\\projects\\demo_10_menu_git\\src\\main\\webapp\\images\\";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -32,7 +33,6 @@ public class ImageServlet extends HttpServlet {
         BufferedOutputStream output = null;
         try {
             String fileName = request.getParameter("name");
-            System.out.println("Working Directory = " + System.getProperty("user.dir"));
             FileInputStream fis = new FileInputStream(new File(DIR + fileName));
             BufferedInputStream bis = new BufferedInputStream(fis);
             response.setContentType("image/jpeg");
