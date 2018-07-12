@@ -5,14 +5,17 @@
  */
 package de.lars.menu.view.frontend;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
 import de.lars.menu.service.SessionService;
+import de.lars.menu.view.frontend.component.Video;
 import de.lars.menu.view.frontend.content.TextBgImageContent;
 import de.lars.menu.view.frontend.header.Header;
 import de.lars.menu.view.frontend.header.HeaderBox;
@@ -40,7 +43,10 @@ public class FrontendView extends VerticalLayout implements RouterLayout {
         headerBox.add(header);
         add(headerBox);
 
-        TextBgImageContent mainContent = new TextBgImageContent("http://localhost:8080/demo_10_menu_git/image?name=img.jpg");
+        Video video = new Video();
+        add(video);
+
+        TextBgImageContent mainContent = new TextBgImageContent("http://localhost:8080/demo_10_menu/image?name=img.jpg");
         add(mainContent);
 
         VerticalLayout layout = new VerticalLayout();
@@ -49,7 +55,7 @@ public class FrontendView extends VerticalLayout implements RouterLayout {
         layout.add(new TextField("adfgagg"));
         add(layout);
 
-        mainContent = new TextBgImageContent("http://localhost:8080/demo_10_menu_git/image?name=P1070112.JPG");
+        mainContent = new TextBgImageContent("http://localhost:8080/demo_10_menu/image?name=P1070112.JPG");
         add(mainContent);
     }
 }
