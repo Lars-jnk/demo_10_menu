@@ -71,7 +71,13 @@ body {
     margin-right: auto;
 }
 
-.fe-video {
+.fe-text-bg-video-content {
+    height: 500px;
+    position: fixed;
+    position: absolute;
+}
+
+.fe-text-bg-video-video {
     top: 0;
     left: 0;
     width: 100%;

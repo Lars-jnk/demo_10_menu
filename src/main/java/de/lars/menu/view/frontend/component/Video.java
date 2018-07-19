@@ -6,7 +6,6 @@
 package de.lars.menu.view.frontend.component;
 
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.Tag;
 
 /**
@@ -14,17 +13,14 @@ import com.vaadin.flow.component.Tag;
  * @author Tobias
  */
 @Tag("video")
-public class Video extends Component implements HasStyle {
+public class Video extends Component {
 
-    public Video() {
-        Source source = new Source();
+    public Video(String src, boolean autoplay, boolean loop, boolean muted) {
+        SourceMp4 source = new SourceMp4(src);
 
-        setClassName("fe-video");
-
-        getElement().setAttribute("poster", "img/videoframe.jpg");
-        getElement().setAttribute("loop", true);
-        getElement().setAttribute("muted", true);
-        getElement().setAttribute("autoplay", true);
+        getElement().setAttribute("autoplay", autoplay);
+        getElement().setAttribute("loop", loop);
+        getElement().setAttribute("muted", muted);
         getElement().appendChild(source.getElement());
     }
 }

@@ -1,0 +1,15 @@
+.fe-content-bg-video {
+    z-index: -2;
+    object-fit: cover;
+}
+
+.fe-text-bg-video-content {
+    height: 500px;
+    position: fixed;
+    position: absolute;
+}
+
+
+
+
+

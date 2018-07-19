@@ -13,10 +13,16 @@ import com.vaadin.flow.component.Tag;
  * @author Tobias
  */
 @Tag("source")
-public class Source extends Component {
+public class SourceMp4 extends Component {
 
-    public Source() {
-        getElement().setAttribute("src", "video/video1.mp4");
+    private static final String REGEX_MP4 = ".*\\.mp4$";
+
+    public SourceMp4(String src) {
+        if (src.matches(REGEX_MP4) == false) {
+            throw new IllegalArgumentException("only mp4 videos");
+        }
+
+        getElement().setAttribute("src", src);
         getElement().setAttribute("type", "video/mp4");
     }
 }
