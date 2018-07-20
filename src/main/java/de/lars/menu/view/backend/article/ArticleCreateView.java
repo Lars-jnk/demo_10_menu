@@ -38,5 +38,7 @@ public class ArticleCreateView extends ArticleModificationView {
         buttons.add(btnCreate, btnToList);
 
         add(buttons);
+        addForms();
+        addPlusBtn();
     }
 }
