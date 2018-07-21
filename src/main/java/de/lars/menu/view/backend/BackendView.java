@@ -8,6 +8,7 @@ import de.lars.menu.view.backend.article.ArticleListView;
 import de.lars.menu.view.backend.demo.Form2View;
 import de.lars.menu.view.backend.demo.FormView;
 import de.lars.menu.view.backend.demo.HomeView;
+import de.lars.menu.view.backend.demo.MyComboBoxView;
 import de.lars.menu.view.backend.demo.MyTabView;
 import de.lars.menu.view.backend.demo.ServiceView;
 import de.lars.menu.view.backend.demo.TabView;
@@ -42,6 +43,7 @@ public class BackendView extends HorizontalLayout implements RouterLayout {
         groupBtn.addLink("Wichtig!", HomeView.class);
         groupBtn.addLink("Tabs", TabView.class);
         groupBtn.addLink("My Tabs", MyTabView.class);
+        groupBtn.addLink("My Combobox", MyComboBoxView.class);
         menu.add(groupBtn);
 
         MenuGroup groupBtn2 = new MenuGroup("Zweites");

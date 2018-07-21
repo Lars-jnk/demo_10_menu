@@ -7,10 +7,10 @@ package de.lars.menu.view.backend.startpage.content;
 
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.tabs.Tabs;
+import de.lars.menu.component.edit.TextEditView;
+import de.lars.menu.component.edit.background.BackgroundEditView;
+import de.lars.menu.component.tabs.ContentTabs;
 import de.lars.menu.entity.facade.ArticleFacade;
-import de.lars.menu.view.backend.startpage.content.component.BackgroundTab;
-import de.lars.menu.view.backend.startpage.content.component.TextTab;
 import javax.inject.Inject;
 
 /**
@@ -19,27 +19,26 @@ import javax.inject.Inject;
  */
 public abstract class StartpageContentModificationView extends VerticalLayout {
 
+    private TextEditView textEditView;
+
+    private BackgroundEditView backgroundEditView;
+
     @Inject
     protected ArticleFacade facade;
 
     public StartpageContentModificationView() {
-        setWidth("700px");
-        setSpacing(false);
-
         HorizontalLayout layoutBtn = new HorizontalLayout();
         addButtons(layoutBtn);
         add(layoutBtn);
 
-        Tabs tabs = new Tabs();
-        tabs.setWidth("700px");
-        TextTab textTab = new TextTab();
-        tabs.add(textTab);
+        ContentTabs contentTabs = new ContentTabs();
+        textEditView = new TextEditView();
+        contentTabs.add("Text", textEditView);
 
-        BackgroundTab backgroundTab = new BackgroundTab();
-        tabs.add(backgroundTab);
+        backgroundEditView = new BackgroundEditView();
+        contentTabs.add("Hintergrund", backgroundEditView);
 
-        add(tabs);
-
+        add(contentTabs);
     }
 
     protected abstract void addButtons(HorizontalLayout layout);

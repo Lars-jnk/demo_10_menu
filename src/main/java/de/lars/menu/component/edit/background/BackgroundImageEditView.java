@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.lars.menu.view.backend.startpage.content.component;
+package de.lars.menu.component.edit.background;
 
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.tabs.Tab;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.upload.Receiver;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.FileData;
@@ -20,15 +20,16 @@ import java.io.OutputStream;
  *
  * @author Tobias
  */
-public class BackgroundTab extends Tab {
+public class BackgroundImageEditView extends VerticalLayout {
 
     private final static String PATH = "c:\\Users\\Tobias\\Desktop\\vaadin\\demo_10_menu\\target\\demo_10_menu_git-1.0-SNAPSHOT\\";
 
     private String backgroundFilename;
     private String backgroundFilenameTmpAbs;
     private String backgroundMimeType;
+    private Image image;
 
-    public BackgroundTab() {
+    public BackgroundImageEditView() {
         MemoryBuffer fileBuffer = new MemoryBuffer();
         Upload upload = new Upload(fileBuffer);
         add(upload);
@@ -46,19 +47,21 @@ public class BackgroundTab extends Tab {
                 byteArrayOutputStream.writeTo(outputStream);
                 outputStream.close();
 
-                Image image = new Image("cache/" + backgroundFilename, "nichts...");
-                image.setWidth("600px");
-                add(image);
+                setImage(backgroundFilename);
             } catch (Exception e) {
                 add(new Label("Oje! - " + e.getMessage()));
                 System.err.println(e.getMessage() + " : ");
             }
-            /*
-            Component component = createComponent(event.getMIMEType(),
-                    event.getFileName(),
-                    upload.getInputStream(event.getFileName()));
-            showOutput(event.getFileName(), component, output);
-             */
         });
+    }
+
+    public void setImage(String filename) {
+        if (image != null) {
+            remove(image);
+        }
+        backgroundFilename = filename;
+        image = new Image("cache/" + backgroundFilename, "nichts...");
+        image.setWidth("100%");
+        add(image);
     }
 }

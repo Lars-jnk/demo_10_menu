@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.lars.menu.view.component.tabs;
+package de.lars.menu.component.tabs;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.StyleSheet;
@@ -69,7 +69,6 @@ public class ContentTabs extends VerticalLayout {
 
     @Override
     public void add(Component... components) {
-        throw new IllegalArgumentException("use add(Tab tab, Component component)");
+        throw new IllegalArgumentException("use add(String name, Component component)");
     }
-
 }
