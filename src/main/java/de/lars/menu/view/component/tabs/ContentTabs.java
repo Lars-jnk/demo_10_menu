@@ -6,6 +6,7 @@
 package de.lars.menu.view.component.tabs;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
@@ -20,6 +21,7 @@ import java.util.stream.Stream;
  *
  * @author Tobias
  */
+@StyleSheet("styles/components/tabs.css")
 public class ContentTabs extends VerticalLayout {
 
     private Map<Tab, Component> tabsToPages;
@@ -32,6 +34,7 @@ public class ContentTabs extends VerticalLayout {
         setMargin(false);
         setPadding(false);
         setWidth("100%");
+        setClassName("component-tabs");
 
         tabsToPages = new HashMap<>();
         tabs = new Tabs();
