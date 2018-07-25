@@ -8,8 +8,6 @@ package de.lars.menu.view.backend.startpage.content;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.lumo.Lumo;
-import de.lars.menu.entity.article.Article;
 import de.lars.menu.view.backend.BackendView;
 
 /**
@@ -37,5 +35,4 @@ public class StartpageContentCreateView extends StartpageContentModificationView
 
         layout.add(btnCreate, btnToList);
     }
-
 }

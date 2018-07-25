@@ -13,6 +13,7 @@ import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import de.lars.menu.service.NameGenService;
 import de.lars.menu.service.Service;
 import de.lars.menu.service.SessionService;
 import de.lars.menu.view.backend.BackendView;
@@ -34,6 +35,9 @@ public class ServiceView extends VerticalLayout implements BeforeEnterObserver {
     private Service service;
 
     @Inject
+    private NameGenService nameGenService;
+
+    @Inject
     private SessionService sessionService;
 
     public ServiceView() {
@@ -47,6 +51,13 @@ public class ServiceView extends VerticalLayout implements BeforeEnterObserver {
         button.setId(ID_BUTTON);
 
         add(tf, button, label);
+
+        TextField suffix = new TextField("Suffix");
+        Label generatedName = new Label();
+        Button gen = new Button("Gen Name",
+                event -> generatedName.setText(nameGenService.generate(suffix.getValue()))
+        );
+        add(suffix, gen, generatedName);
     }
 
     @Override

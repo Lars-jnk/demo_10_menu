@@ -18,7 +18,9 @@ public class BackgroundEditView extends VerticalLayout {
 
     public BackgroundEditView() {
         comboBoxWithView = new ComboBoxWithView("Type:");
-        comboBoxWithView.add("Bild", new BackgroundImageEditView());
+        BackgroundImageEditView b = new BackgroundImageEditView();
+        b.setImage("100_3183.JPG");
+        comboBoxWithView.add("Bild", b);
 
         add(comboBoxWithView);
     }

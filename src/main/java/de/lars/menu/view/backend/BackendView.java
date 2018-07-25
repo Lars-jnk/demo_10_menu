@@ -9,9 +9,11 @@ import de.lars.menu.view.backend.demo.Form2View;
 import de.lars.menu.view.backend.demo.FormView;
 import de.lars.menu.view.backend.demo.HomeView;
 import de.lars.menu.view.backend.demo.MyComboBoxView;
+import de.lars.menu.view.backend.demo.MyDropDownView;
 import de.lars.menu.view.backend.demo.MyTabView;
 import de.lars.menu.view.backend.demo.ServiceView;
 import de.lars.menu.view.backend.demo.TabView;
+import de.lars.menu.view.backend.elements.background.BackgroundElementListView;
 import de.lars.menu.view.backend.menu.Menu;
 import de.lars.menu.view.backend.menu.MenuGroup;
 import de.lars.menu.view.backend.startpage.content.StartpageContentListView;
@@ -35,15 +37,18 @@ public class BackendView extends HorizontalLayout implements RouterLayout {
         groupStartpage.addLink("Content", StartpageContentListView.class);
         menu.add(groupStartpage);
 
+        MenuGroup groupElements = new MenuGroup("Elemente");
+        groupElements.addLink("Hintergründe", BackgroundElementListView.class);
+        menu.add(groupElements);
+
         MenuGroup groupBtn = new MenuGroup("Demo");
         groupBtn.addLink("Article", ArticleListView.class);
         groupBtn.addLink("Ein Test", HomeView.class);
         groupBtn.addLink("ServiceView", ServiceView.class);
-        groupBtn.addLink("der neue Service", ServiceView.class);
-        groupBtn.addLink("Wichtig!", HomeView.class);
         groupBtn.addLink("Tabs", TabView.class);
         groupBtn.addLink("My Tabs", MyTabView.class);
         groupBtn.addLink("My Combobox", MyComboBoxView.class);
+        groupBtn.addLink("My Dropdown", MyDropDownView.class);
         menu.add(groupBtn);
 
         MenuGroup groupBtn2 = new MenuGroup("Zweites");
