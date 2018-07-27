@@ -16,6 +16,7 @@ import de.lars.menu.view.backend.demo.TabView;
 import de.lars.menu.view.backend.elements.background.BackgroundElementListView;
 import de.lars.menu.view.backend.menu.Menu;
 import de.lars.menu.view.backend.menu.MenuGroup;
+import de.lars.menu.view.backend.polymer.helloworld.HelloWorldView;
 import de.lars.menu.view.backend.startpage.content.StartpageContentListView;
 
 /**
@@ -26,6 +27,7 @@ import de.lars.menu.view.backend.startpage.content.StartpageContentListView;
 public class BackendView extends HorizontalLayout implements RouterLayout {
 
     public static final String ROUTE = "backend";
+    public static final String PROJECT_NAME = "demo_10_menu";
 
     public BackendView() {
         setWidth("100%");
@@ -50,6 +52,10 @@ public class BackendView extends HorizontalLayout implements RouterLayout {
         groupBtn.addLink("My Combobox", MyComboBoxView.class);
         groupBtn.addLink("My Dropdown", MyDropDownView.class);
         menu.add(groupBtn);
+
+        MenuGroup groupPolymer = new MenuGroup("Polymer");
+        groupPolymer.addLink("Hallo Welt", HelloWorldView.class);
+        menu.add(groupPolymer);
 
         MenuGroup groupBtn2 = new MenuGroup("Zweites");
         groupBtn2.addLink("Form", FormView.class);

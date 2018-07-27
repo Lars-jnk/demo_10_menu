@@ -1,3 +1,4 @@
 target/
 src/main/webapp/WEB-INF/glassfish-resources.xml
 src/main/webapp/video
+src/main/webapp/cache
