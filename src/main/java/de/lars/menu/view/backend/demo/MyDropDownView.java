@@ -10,12 +10,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.dom.ElementFactory;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import de.lars.menu.component.container.ComboBoxWithView;
@@ -39,7 +35,7 @@ public class MyDropDownView extends VerticalLayout {
         DropdownMenu ddm = new DropdownMenu("Neu");
         add(ddm);
 
-        add(createDropdown());
+        //add(createDropdown());
     }
 
     private IronDropdownWrapper createDropdown() {

@@ -10,7 +10,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import de.lars.menu.component.container.ComboBoxWithView;
-import de.lars.menu.component.tabs.ContentTabs;
 import de.lars.menu.view.backend.BackendView;
 
 /**

@@ -8,9 +8,9 @@ package de.lars.menu.component.container;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.tabs.Tab;
+import com.vaadin.flow.dom.Element;
+import com.vaadin.flow.dom.ElementFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,9 +42,6 @@ public class ComboBoxWithView extends VerticalLayout {
         names = new ArrayList<>();
         views = new Div();
         views.setWidth("100%");
-
-        comboBox.setItems("keiner", "Bild", "Video", "Farbe");
-        comboBox.setValue("keiner");
 
         comboBox.addValueChangeListener(event -> {
             if (event.getSource().isEmpty()) {
