@@ -34,6 +34,9 @@ public class BackgroundElementImage extends BackgroundElement {
     @Column(name = "height")
     private int height;
 
+    @Column(name = "size_in_byte")
+    private int sizeInByte;
+
     @Column(name = "altervative_text", length = 512)
     private String altervativeText;
 
@@ -77,6 +80,14 @@ public class BackgroundElementImage extends BackgroundElement {
         this.height = height;
     }
 
+    public int getSizeInByte() {
+        return sizeInByte;
+    }
+
+    public void setSizeInByte(int sizeInByte) {
+        this.sizeInByte = sizeInByte;
+    }
+
     public String getAltervativeText() {
         return altervativeText;
     }
@@ -84,5 +95,4 @@ public class BackgroundElementImage extends BackgroundElement {
     public void setAltervativeText(String altervativeText) {
         this.altervativeText = altervativeText;
     }
-
 }

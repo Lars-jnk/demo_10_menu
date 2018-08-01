@@ -7,10 +7,12 @@ import com.vaadin.flow.router.RouterLayout;
 import de.lars.menu.view.backend.article.ArticleListView;
 import de.lars.menu.view.backend.demo.Form2View;
 import de.lars.menu.view.backend.demo.FormView;
+import de.lars.menu.view.backend.demo.HelloView;
 import de.lars.menu.view.backend.demo.HomeView;
 import de.lars.menu.view.backend.demo.MyComboBoxView;
 import de.lars.menu.view.backend.demo.MyDropDownView;
 import de.lars.menu.view.backend.demo.MyTabView;
+import de.lars.menu.view.backend.demo.PanelView;
 import de.lars.menu.view.backend.demo.ServiceView;
 import de.lars.menu.view.backend.demo.TabView;
 import de.lars.menu.view.backend.elements.background.BackgroundElementListView;
@@ -31,7 +33,7 @@ public class BackendView extends HorizontalLayout implements RouterLayout {
 
     public BackendView() {
         setWidth("100%");
-        setClassName("be-content");
+        setClassName("be-view");
 
         Menu menu = new Menu("Backend");
 
@@ -45,12 +47,14 @@ public class BackendView extends HorizontalLayout implements RouterLayout {
 
         MenuGroup groupBtn = new MenuGroup("Demo");
         groupBtn.addLink("Article", ArticleListView.class);
+        groupBtn.addLink("Hello", HelloView.class);
         groupBtn.addLink("Ein Test", HomeView.class);
         groupBtn.addLink("ServiceView", ServiceView.class);
         groupBtn.addLink("Tabs", TabView.class);
         groupBtn.addLink("My Tabs", MyTabView.class);
         groupBtn.addLink("My Combobox", MyComboBoxView.class);
         groupBtn.addLink("My Dropdown", MyDropDownView.class);
+        groupBtn.addLink("Panel Test", PanelView.class);
         menu.add(groupBtn);
 
         MenuGroup groupPolymer = new MenuGroup("Polymer");

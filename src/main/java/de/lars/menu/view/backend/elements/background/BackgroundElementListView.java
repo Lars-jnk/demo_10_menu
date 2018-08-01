@@ -9,6 +9,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import de.lars.menu.view.backend.BackendView;
+import de.lars.menu.view.backend.elements.background.image.BackgroundElementImageCreateView;
 
 /**
  *
@@ -20,7 +21,7 @@ public class BackgroundElementListView extends VerticalLayout {
     public static final String ROUTE = BackendView.ROUTE + "/background";
 
     public BackgroundElementListView() {
-        RouterLink btnCreate = new RouterLink("create", BackgroundElementCreateView.class);
+        RouterLink btnCreate = new RouterLink("create image", BackgroundElementImageCreateView.class);
         add(btnCreate);
     }
 }
