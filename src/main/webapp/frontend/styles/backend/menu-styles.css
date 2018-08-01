@@ -13,7 +13,8 @@
 }
 
 .be-menu {
-    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
     height: 100vh;
     background-color: #262f3d;
 }

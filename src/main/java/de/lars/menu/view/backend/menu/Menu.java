@@ -7,26 +7,25 @@ package de.lars.menu.view.backend.menu;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.StyleSheet;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import de.lars.menu.view.backend.article.ArticleListView;
-import de.lars.menu.view.backend.demo.Form2View;
-import de.lars.menu.view.backend.demo.FormView;
-import de.lars.menu.view.backend.demo.HomeView;
-import de.lars.menu.view.backend.demo.ServiceView;
+import de.lars.menu.component.layout.ScrollableVerticalLayout;
 
 /**
  *
  * @author reuss
  */
 @StyleSheet("styles/backend/menu-styles.css")
-public class Menu extends VerticalLayout {
+public class Menu extends ScrollableVerticalLayout {
 
     public Menu(String headline) {
         setPadding(false);
+        setSpacing(false);
         setSizeUndefined();
         setClassName("be-menu");
 
-        super.add(new MenuHeadline(headline));
+        MenuHeadlineLayout headlineLayout = new MenuHeadlineLayout();
+        headlineLayout.add(new MenuHeadline(headline));
+
+        super.add(headlineLayout);
     }
 
     @Override
