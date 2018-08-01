@@ -8,6 +8,7 @@ package de.lars.menu.view.backend.elements.background.image;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -17,8 +18,10 @@ import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.FileData;
 import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import de.lars.menu.component.layout.ScrollableVerticalLayout;
+import de.lars.menu.dto.ImageDto;
 import de.lars.menu.entity.element.background.BackgroundElementImage;
 import de.lars.menu.service.FileCacheService;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -37,7 +40,6 @@ public abstract class BackgroundElementImageModificationView extends VerticalLay
     private TextArea notice;
     private Upload upload;
 
-    //private FormLayout imagePropertyLayout;
     private VerticalLayout imagePropertyLayout;
     private TextField filenameOriginal;
     private TextField mimeType;
@@ -110,16 +112,23 @@ public abstract class BackgroundElementImageModificationView extends VerticalLay
     private void cacheFile(SucceededEvent event, FileData fileData) {
         String filenameOriginal = fileData.getFileName();
         try {
-            String filenameGenerated = fileCacheService.cacheFile(fileData.getOutputBuffer(), filenameOriginal.substring(filenameOriginal.lastIndexOf(".") + 1));
-            setImageWithInfos("cache/", filenameGenerated, filenameOriginal, fileData.getMimeType(), event.getContentLength());
+            ImageDto imageDto = fileCacheService.cacheFile(fileData, event.getContentLength());
+            //String filenameGenerated = fileCacheService.cacheFile(fileData.getOutputBuffer(), filenameOriginal.substring(filenameOriginal.lastIndexOf(".") + 1));
+            //BufferedImage imgBuffer = ImageIO.read(new File("cache/" + filenameGenerated));
+            //setImageWithInfos("cache/", filenameGenerated, filenameOriginal, fileData.getMimeType(), imgBuffer.getWidth(), imgBuffer.getHeight(), event.getContentLength());
+            setImageWithInfos(imageDto);
         } catch (IllegalAccessException ex) {
+            Logger.getLogger(BackgroundElementImageModificationView.class.getName()).log(Level.SEVERE, null, ex);
+            add(new Label(ex.getMessage()));
+        } catch (IOException ex) {
             Logger.getLogger(BackgroundElementImageModificationView.class.getName()).log(Level.SEVERE, null, ex);
             add(new Label(ex.getMessage()));
         }
     }
 
-    private void setImageWithInfos(String fileDir, String filenameIntern, String filenameExtern, String mimeType, long sizeInByte) {
-        setImage(fileDir + filenameIntern);
+    //private void setImageWithInfos(String fileDir, String filenameIntern, String filenameExtern, String mimeType, int width, int height, long sizeInByte) {
+    private void setImageWithInfos(ImageDto imageDto) {
+        setImage(imageDto.directory + "/" + imageDto.filenameGenerated);
         imagePropertyLayout = new VerticalLayout();
         imagePropertyLayout.setMargin(false);
         imagePropertyLayout.setSpacing(false);
@@ -127,45 +136,31 @@ public abstract class BackgroundElementImageModificationView extends VerticalLay
         imagePropertyLayout.setWidth("100%");
         contentLayout.add(imagePropertyLayout);
 
-        this.filenameOriginal = createTextField("Dateiname (original)", filenameExtern, true);
-        this.mimeType = createTextField("Mime Type", mimeType, true);
-        HorizontalLayout layout = new HorizontalLayout(this.filenameOriginal, this.mimeType);
+        filenameOriginal = createTextField("Dateiname (original)", imageDto.filenameOriginal, true);
+        mimeType = createTextField("Mime Type", imageDto.mimeType, true);
+        HorizontalLayout layout = new HorizontalLayout(filenameOriginal, mimeType);
         layout.setWidth("100%");
-        layout.expand(this.filenameOriginal);
+        layout.expand(filenameOriginal);
         imagePropertyLayout.add(layout);
 
-        this.filenameGenerated = createTextField("Dateiname (generiert)", filenameIntern, true);
-        layout = new HorizontalLayout(this.filenameGenerated);
+        filenameGenerated = createTextField("Dateiname (generiert)", imageDto.filenameGenerated, true);
+        layout = new HorizontalLayout(filenameGenerated);
         layout.setWidth("100%");
-        layout.expand(this.filenameGenerated);
+        layout.expand(filenameGenerated);
         imagePropertyLayout.add(layout);
 
-        this.imageSizeInByte = createTextField("Dateigröße", Long.toString(sizeInByte), true);
-        imagePropertyLayout.add(new HorizontalLayout(this.imageSizeInByte));
-
-        /*
-        this.filenameOriginal = new TextField();
-        this.filenameOriginal.setValue(filenameExtern);
-        this.filenameOriginal.setReadOnly(true);
-        this.filenameOriginal.setWidth("70%");
-        FormItem item = imagePropertyLayout.addFormItem(this.filenameOriginal, "Dateiname (original)");
-
-        this.mimeType = new TextField();
-        this.mimeType.setValue(mimeType);
-        this.mimeType.setReadOnly(true);
-        this.mimeType.setWidth("30%");
-        imagePropertyLayout.addFormItem(this.mimeType, "Mime Type");
-
-        this.filenameGenerated = new TextField();
-        this.filenameGenerated.setValue(filenameIntern);
-        this.filenameGenerated.setReadOnly(true);
-        imagePropertyLayout.addFormItem(this.filenameGenerated, "Dateiname (generiert)");
-
-        this.imageSizeInByte = new TextField();
-        this.imageSizeInByte.setValue(Long.toString(sizeInByte));
-        this.imageSizeInByte.setReadOnly(true);
-        imagePropertyLayout.addFormItem(this.imageSizeInByte, "Dateigröße");
-         */
+        imageWidth = createTextField("Breite", Integer.toString(imageDto.width), true);
+        imageWidth.setSuffixComponent(new Span("px"));
+        imageHeight = createTextField("Höhe", Integer.toString(imageDto.height), true);
+        imageHeight.setSuffixComponent(new Span("px"));
+        imageSizeInByte = createTextField("Dateigröße", Long.toString(imageDto.sizeInByte), true);
+        imageSizeInByte.setSuffixComponent(new Span("Byte"));
+        layout = new HorizontalLayout(imageWidth, imageHeight, imageSizeInByte);
+        layout.setWidth("100%");
+        layout.expand(imageWidth);
+        layout.expand(imageHeight);
+        layout.expand(imageSizeInByte);
+        imagePropertyLayout.add(layout);
     }
 
     public void setImage(String filenameGenerated) {
