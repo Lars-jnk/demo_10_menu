@@ -32,6 +32,7 @@ public class BackendView extends HorizontalLayout implements RouterLayout {
     public static final String PROJECT_NAME = "demo_10_menu";
 
     public BackendView() {
+        setSpacing(false);
         setWidth("100%");
         setClassName("be-view");
 

@@ -1,9 +1,8 @@
 .be-content-layout {
     display: block;
     width: 100%;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #ccc;
-    border-radius: 10px;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #ccc;
     padding: 5px 10px;
 }

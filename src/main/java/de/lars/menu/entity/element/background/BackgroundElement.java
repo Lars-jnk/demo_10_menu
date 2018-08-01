@@ -6,6 +6,7 @@
 package de.lars.menu.entity.element.background;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 /**
@@ -36,6 +39,18 @@ public abstract class BackgroundElement implements Serializable {
     @Column(name = "notice", columnDefinition = "TEXT")
     private String notice;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created")
+    private Date created;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated")
+    private Date updated;
+
+    public BackgroundElement() {
+        created = new Date();
+    }
+
     public Long getId() {
         return id;
     }
@@ -50,6 +65,7 @@ public abstract class BackgroundElement implements Serializable {
 
     public void setInternTitle(String internTitle) {
         this.internTitle = internTitle;
+        setUpdated();
     }
 
     public String getNotice() {
@@ -58,5 +74,18 @@ public abstract class BackgroundElement implements Serializable {
 
     public void setNotice(String notice) {
         this.notice = notice;
+        setUpdated();
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated() {
+        this.updated = new Date();
     }
 }

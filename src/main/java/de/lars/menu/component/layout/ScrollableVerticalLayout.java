@@ -18,12 +18,15 @@ public class ScrollableVerticalLayout extends VerticalLayout {
 
     public ScrollableVerticalLayout() {
         setPadding(false);
+        setMargin(false);
         setSpacing(false);
         getStyle().set("overflow-y", "auto");
+        getStyle().set("margin-top", "0px");
 
         innerLayout = new VerticalLayout();
         innerLayout.setPadding(false);
-        setSpacing(false);
+        innerLayout.setMargin(false);
+        innerLayout.setSpacing(false);
         innerLayout.getStyle().set("display", "block");
 
         super.add(innerLayout);

@@ -35,7 +35,7 @@ public class BackgroundElementImage extends BackgroundElement {
     private int height;
 
     @Column(name = "size_in_byte")
-    private int sizeInByte;
+    private long sizeInByte;
 
     @Column(name = "altervative_text", length = 512)
     private String altervativeText;
@@ -46,6 +46,7 @@ public class BackgroundElementImage extends BackgroundElement {
 
     public void setFilenameIntern(String filenameIntern) {
         this.filenameIntern = filenameIntern;
+        setUpdated();
     }
 
     public String getFilenameExtern() {
@@ -54,6 +55,7 @@ public class BackgroundElementImage extends BackgroundElement {
 
     public void setFilenameExtern(String filenameExtern) {
         this.filenameExtern = filenameExtern;
+        setUpdated();
     }
 
     public String getMimeType() {
@@ -62,6 +64,7 @@ public class BackgroundElementImage extends BackgroundElement {
 
     public void setMimeType(String mimeType) {
         this.mimeType = mimeType;
+        setUpdated();
     }
 
     public int getWidth() {
@@ -70,6 +73,7 @@ public class BackgroundElementImage extends BackgroundElement {
 
     public void setWidth(int width) {
         this.width = width;
+        setUpdated();
     }
 
     public int getHeight() {
@@ -78,14 +82,16 @@ public class BackgroundElementImage extends BackgroundElement {
 
     public void setHeight(int height) {
         this.height = height;
+        setUpdated();
     }
 
-    public int getSizeInByte() {
+    public long getSizeInByte() {
         return sizeInByte;
     }
 
-    public void setSizeInByte(int sizeInByte) {
+    public void setSizeInByte(long sizeInByte) {
         this.sizeInByte = sizeInByte;
+        setUpdated();
     }
 
     public String getAltervativeText() {
@@ -94,5 +100,6 @@ public class BackgroundElementImage extends BackgroundElement {
 
     public void setAltervativeText(String altervativeText) {
         this.altervativeText = altervativeText;
+        setUpdated();
     }
 }

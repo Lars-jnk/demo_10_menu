@@ -12,6 +12,8 @@ import com.vaadin.flow.router.Route;
 import de.lars.menu.entity.facade.BackgroundElementFacade;
 import de.lars.menu.view.backend.BackendView;
 import de.lars.menu.view.backend.elements.background.BackgroundElementListView;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 
 /**
@@ -32,7 +34,12 @@ public class BackgroundElementImageCreateView extends BackgroundElementImageModi
     @Override
     public void addButtons(HorizontalLayout layout) {
         layout.add(new Button("erstellen", e -> {
-            facade.create(getBackgroundImage());
+            try {
+                facade.create(getBackgroundImage());
+            } catch (IllegalAccessException ex) {
+                Notification.show("so aber nicht!", 10, Notification.Position.MIDDLE);
+                Logger.getLogger(BackgroundElementImageCreateView.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Notification.show("gespeichert");
         }));
 
