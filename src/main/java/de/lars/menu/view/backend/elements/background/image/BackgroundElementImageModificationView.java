@@ -17,9 +17,11 @@ import com.vaadin.flow.component.upload.SucceededEvent;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.FileData;
 import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
+import de.lars.menu.component.layout.PlainVerticalLayout;
 import de.lars.menu.component.layout.ScrollableVerticalLayout;
 import de.lars.menu.dto.ImageDto;
 import de.lars.menu.entity.element.background.BackgroundElementImage;
+import de.lars.menu.entity.facade.BackgroundElementImageFacade;
 import de.lars.menu.service.FileCacheService;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -36,11 +38,12 @@ public abstract class BackgroundElementImageModificationView extends VerticalLay
     private ScrollableVerticalLayout panel;
 
     private VerticalLayout contentLayout;
-    private TextField titelIntern;
+    private TextField titleIntern;
     private TextArea notice;
     private Upload upload;
 
-    private VerticalLayout imagePropertyLayout;
+    private PlainVerticalLayout imagePropertyLayout;
+    private TextField alternativeText;
     private TextField filenameOriginal;
     private TextField mimeType;
     private TextField filenameGenerated;
@@ -49,8 +52,13 @@ public abstract class BackgroundElementImageModificationView extends VerticalLay
     private TextField imageSizeInByte;
     private Image image;
 
+    private ImageDto imageDto;
+
     @Inject
     private FileCacheService fileCacheService;
+
+    @Inject
+    protected BackgroundElementImageFacade facade;
 
     public BackgroundElementImageModificationView() {
         setPadding(false);
@@ -58,29 +66,32 @@ public abstract class BackgroundElementImageModificationView extends VerticalLay
         addButtonLayout();
 
         panel = new ScrollableVerticalLayout();
-        panel.add(createCommonFieldLayout());
 
+        MemoryBuffer fileBuffer = new MemoryBuffer();
+        upload = new Upload(fileBuffer);
+        upload.addClassName("be-content-upload");
+        upload.addSucceededListener(event -> {
+            cacheFile(event, fileBuffer.getFileData());
+        });
+        panel.add(upload);
         add(panel);
     }
 
-    public BackgroundElementImage getBackgroundImage() throws IllegalAccessException {
-        if (imagePropertyLayout == null) {
-            throw new IllegalAccessException("create FormLayout and Fields before calling this function.");
+    public BackgroundElementImage fillEntity(BackgroundElementImage backgroundImage) throws IllegalAccessException {
+        if (image == null || imagePropertyLayout == null) {
+            throw new IllegalAccessException("Upload an image before calling this function.");
         }
-        BackgroundElementImage bgImage = new BackgroundElementImage();
-        bgImage.setFilenameExtern(filenameOriginal.getValue());
-        bgImage.setFilenameIntern(filenameGenerated.getValue());
-        bgImage.setMimeType(mimeType.getValue());
-        bgImage.setSizeInByte(1234);
-        bgImage.setWidth(3000);
-        bgImage.setHeight(2000);
+        backgroundImage.setInternTitle(titleIntern.getValue());
+        backgroundImage.setNotice(notice.getValue());
+        backgroundImage.setAltervativeText(alternativeText.getValue());
+        backgroundImage.setFilenameExtern(filenameOriginal.getValue());
+        backgroundImage.setFilenameIntern(filenameGenerated.getValue());
+        backgroundImage.setMimeType(mimeType.getValue());
+        backgroundImage.setSizeInByte(imageDto.sizeInByte);
+        backgroundImage.setWidth(imageDto.width);
+        backgroundImage.setHeight(imageDto.height);
 
-        bgImage.setAltervativeText("alt Text");
-
-        bgImage.setInternTitle(titelIntern.getValue());
-        bgImage.setNotice(notice.getValue());
-
-        return bgImage;
+        return backgroundImage;
     }
 
     private void addButtonLayout() {
@@ -92,30 +103,9 @@ public abstract class BackgroundElementImageModificationView extends VerticalLay
 
     public abstract void addButtons(HorizontalLayout layout);
 
-    private VerticalLayout createCommonFieldLayout() {
-        titelIntern = new TextField("Titel (intern)", "Titel");
-        titelIntern.setWidth("100%");
-
-        notice = new TextArea("Notiz (intern)", "Notiz");
-        notice.setWidth("100%");
-
-        MemoryBuffer fileBuffer = new MemoryBuffer();
-        upload = new Upload(fileBuffer);
-        upload.addSucceededListener(event -> {
-            cacheFile(event, fileBuffer.getFileData());
-        });
-
-        contentLayout = new VerticalLayout(titelIntern, notice, upload);
-        return contentLayout;
-    }
-
     private void cacheFile(SucceededEvent event, FileData fileData) {
-        String filenameOriginal = fileData.getFileName();
         try {
-            ImageDto imageDto = fileCacheService.cacheFile(fileData, event.getContentLength());
-            //String filenameGenerated = fileCacheService.cacheFile(fileData.getOutputBuffer(), filenameOriginal.substring(filenameOriginal.lastIndexOf(".") + 1));
-            //BufferedImage imgBuffer = ImageIO.read(new File("cache/" + filenameGenerated));
-            //setImageWithInfos("cache/", filenameGenerated, filenameOriginal, fileData.getMimeType(), imgBuffer.getWidth(), imgBuffer.getHeight(), event.getContentLength());
+            imageDto = fileCacheService.cacheFile(fileData, event.getContentLength());
             setImageWithInfos(imageDto);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(BackgroundElementImageModificationView.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,19 +116,38 @@ public abstract class BackgroundElementImageModificationView extends VerticalLay
         }
     }
 
-    //private void setImageWithInfos(String fileDir, String filenameIntern, String filenameExtern, String mimeType, int width, int height, long sizeInByte) {
-    private void setImageWithInfos(ImageDto imageDto) {
-        setImage(imageDto.directory + "/" + imageDto.filenameGenerated);
-        imagePropertyLayout = new VerticalLayout();
-        imagePropertyLayout.setMargin(false);
-        imagePropertyLayout.setSpacing(false);
-        imagePropertyLayout.setPadding(false);
-        imagePropertyLayout.setWidth("100%");
-        contentLayout.add(imagePropertyLayout);
+    protected void setImageWithInfos(ImageDto imageDto) {
+        if (contentLayout != null) {
+            panel.remove(contentLayout);
+        }
+
+        titleIntern = new TextField("Titel (intern)", imageDto.titleIntern, "Titel");
+        titleIntern.setWidth("100%");
+
+        notice = new TextArea("Notiz (intern)", imageDto.notice, "Notiz");
+        notice.setWidth("100%");
+
+        image = createImage(imageDto.directory + "/" + imageDto.filenameGenerated);
+
+        imagePropertyLayout = createImagePropertyLayout(imageDto);
+
+        contentLayout = new VerticalLayout(titleIntern, notice, image, imagePropertyLayout);
+        contentLayout.setSpacing(false);
+        panel.add(contentLayout);
+    }
+
+    private PlainVerticalLayout createImagePropertyLayout(ImageDto imageDto) {
+        PlainVerticalLayout imagePropertyLayout = new PlainVerticalLayout();
+
+        alternativeText = createTextField("Alternativtext", imageDto.alternativeText, false);
+        HorizontalLayout layout = new HorizontalLayout(alternativeText);
+        layout.setWidth("100%");
+        layout.expand(alternativeText);
+        imagePropertyLayout.add(layout);
 
         filenameOriginal = createTextField("Dateiname (original)", imageDto.filenameOriginal, true);
         mimeType = createTextField("Mime Type", imageDto.mimeType, true);
-        HorizontalLayout layout = new HorizontalLayout(filenameOriginal, mimeType);
+        layout = new HorizontalLayout(filenameOriginal, mimeType);
         layout.setWidth("100%");
         layout.expand(filenameOriginal);
         imagePropertyLayout.add(layout);
@@ -157,19 +166,16 @@ public abstract class BackgroundElementImageModificationView extends VerticalLay
         imageSizeInByte.setSuffixComponent(new Span("Byte"));
         layout = new HorizontalLayout(imageWidth, imageHeight, imageSizeInByte);
         layout.setWidth("100%");
-        layout.expand(imageWidth);
-        layout.expand(imageHeight);
-        layout.expand(imageSizeInByte);
+        layout.expand(imageWidth, imageHeight, imageSizeInByte);
         imagePropertyLayout.add(layout);
+
+        return imagePropertyLayout;
     }
 
-    public void setImage(String filenameGenerated) {
-        if (image != null) {
-            remove(image);
-        }
-        image = new Image(filenameGenerated, "Oje, da ist wohl ein Fehler aufgetreten.");
+    private Image createImage(String filenameGenerated) {
+        Image image = new Image(filenameGenerated, "Oje, da ist wohl ein Fehler aufgetreten.");
         image.setWidth("100%");
-        contentLayout.add(image);
+        return image;
     }
 
     private TextField createTextField(String label, String value, boolean enabled) {

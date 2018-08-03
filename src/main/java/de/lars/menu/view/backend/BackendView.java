@@ -15,7 +15,7 @@ import de.lars.menu.view.backend.demo.MyTabView;
 import de.lars.menu.view.backend.demo.PanelView;
 import de.lars.menu.view.backend.demo.ServiceView;
 import de.lars.menu.view.backend.demo.TabView;
-import de.lars.menu.view.backend.elements.background.BackgroundElementListView;
+import de.lars.menu.view.backend.elements.background.image.BackgroundElementListView;
 import de.lars.menu.view.backend.menu.Menu;
 import de.lars.menu.view.backend.menu.MenuGroup;
 import de.lars.menu.view.backend.polymer.helloworld.HelloWorldView;

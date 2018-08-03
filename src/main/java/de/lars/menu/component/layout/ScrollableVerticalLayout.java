@@ -36,4 +36,9 @@ public class ScrollableVerticalLayout extends VerticalLayout {
     public void add(Component... components) {
         innerLayout.add(components);
     }
+
+    @Override
+    public void remove(Component... components) {
+        innerLayout.remove(components);
+    }
 }

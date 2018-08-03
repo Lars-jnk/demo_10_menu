@@ -11,6 +11,9 @@ package de.lars.menu.dto;
  */
 public class ImageDto {
 
+    public String titleIntern;
+    public String notice;
+    public String alternativeText;
     public String directory;
     public String filenameGenerated;
     public String filenameOriginal;

@@ -33,8 +33,6 @@ public class ArticleListView extends VerticalLayout implements BeforeEnterObserv
     private Grid<Article> grid;
 
     public ArticleListView() {
-        setSizeFull();
-
         grid = new Grid<>();
         grid.addColumn(Article::getHeadline).setHeader("Überschrift");
         grid.addColumn(article -> new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(article.getCreated())).setHeader("Created");

@@ -40,6 +40,9 @@ public class FileCacheService implements Serializable {
         BufferedImage imgBuffer = ImageIO.read(new File(PATH_1 + DIR_CACHE + "\\" + filenameGenerated));
 
         ImageDto imageDto = new ImageDto();
+        imageDto.titleIntern = "";
+        imageDto.notice = "";
+        imageDto.alternativeText = "";
         imageDto.directory = DIR_CACHE;
         imageDto.filenameGenerated = filenameGenerated;
         imageDto.filenameOriginal = fileData.getFileName();
