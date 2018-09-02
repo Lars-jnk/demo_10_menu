@@ -6,7 +6,6 @@
 package de.lars.menu.entity.demo;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -35,8 +33,7 @@ public class Demo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idDemo")
     private Integer idDemo;
     @Size(max = 45)
@@ -45,7 +42,7 @@ public class Demo implements Serializable {
     @Size(max = 45)
     @Column(name = "Democol1")
     private String democol1;
-    
+
     private int test;
 
     public Demo() {
@@ -53,6 +50,11 @@ public class Demo implements Serializable {
 
     public Demo(Integer idDemo) {
         this.idDemo = idDemo;
+    }
+
+    public Demo(String demoCol, String demoCol1) {
+        this.democol = demoCol;
+        this.democol1 = demoCol1;
     }
 
     public Integer getIdDemo() {
@@ -79,6 +81,14 @@ public class Demo implements Serializable {
         this.democol1 = democol1;
     }
 
+    public int getTest() {
+        return test;
+    }
+
+    public void setTest(int test) {
+        this.test = test;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -103,5 +113,5 @@ public class Demo implements Serializable {
     public String toString() {
         return "de.lars.menu.entity.Demo[ idDemo=" + idDemo + " ]";
     }
-    
+
 }

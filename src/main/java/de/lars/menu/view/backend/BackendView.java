@@ -5,6 +5,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
 import de.lars.menu.view.backend.article.ArticleListView;
+import de.lars.menu.view.backend.demo.DemoEntityView;
 import de.lars.menu.view.backend.demo.Form2View;
 import de.lars.menu.view.backend.demo.FormView;
 import de.lars.menu.view.backend.demo.HelloView;
@@ -48,6 +49,7 @@ public class BackendView extends HorizontalLayout implements RouterLayout {
 
         MenuGroup groupBtn = new MenuGroup("Demo");
         groupBtn.addLink("Article", ArticleListView.class);
+        groupBtn.addLink("Demo Entity", DemoEntityView.class);
         groupBtn.addLink("Hello", HelloView.class);
         groupBtn.addLink("Ein Test", HomeView.class);
         groupBtn.addLink("ServiceView", ServiceView.class);
