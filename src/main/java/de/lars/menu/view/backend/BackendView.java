@@ -21,6 +21,7 @@ import de.lars.menu.view.backend.menu.Menu;
 import de.lars.menu.view.backend.menu.MenuGroup;
 import de.lars.menu.view.backend.polymer.helloworld.HelloWorldView;
 import de.lars.menu.view.backend.startpage.content.StartpageContentListView;
+import de.lars.menu.view.backend.training.exercise.ExerciseListView;
 
 /**
  * The main view contains a button and a template element.
@@ -46,6 +47,10 @@ public class BackendView extends HorizontalLayout implements RouterLayout {
         MenuGroup groupElements = new MenuGroup("Elemente");
         groupElements.addLink("Hintergründe", BackgroundElementListView.class);
         menu.add(groupElements);
+
+        MenuGroup groupTraining = new MenuGroup("Training");
+        groupTraining.addLink("Übungen", ExerciseListView.class);
+        menu.add(groupTraining);
 
         MenuGroup groupBtn = new MenuGroup("Demo");
         groupBtn.addLink("Article", ArticleListView.class);
