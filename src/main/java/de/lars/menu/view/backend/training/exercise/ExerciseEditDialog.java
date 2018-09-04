@@ -13,10 +13,10 @@ import de.lars.menu.entity.training.Exercise;
  *
  * @author Lars
  */
-public class ExerciseCreateDialog extends ExerciseModifitationDialog {
+public class ExerciseEditDialog extends ExerciseModifitationDialog {
 
-    public ExerciseCreateDialog(ComponentEventListener<OpenedChangeEvent<Dialog>> listener) {
-        super(new Exercise());
+    public ExerciseEditDialog(Exercise exercise, ComponentEventListener<OpenedChangeEvent<Dialog>> listener) {
+        super(exercise);
 
         open();
         addOpenedChangeListener(listener);
