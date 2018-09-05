@@ -8,6 +8,7 @@ package de.lars.menu.view.backend.component.dialog;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import de.lars.menu.component.layout.PlainVerticalLayout;
@@ -31,7 +32,13 @@ public abstract class DeleteDialog extends Dialog {
         Button cancelButton = new Button("Nein", event -> {
             close();
         });
-        add(new VerticalLayout(content, new HorizontalLayout(confirmButton, cancelButton)));
+
+        Span span1 = new Span("Wollen Sie den Datensatz wirklic löschen?");
+        Span span2 = new Span();
+        HorizontalLayout btns = new HorizontalLayout(span1, confirmButton, cancelButton);
+        btns.setWidth("100%");
+        btns.expand(span1);
+        add(new VerticalLayout(content, btns));
     }
 
     protected void setContent(FormLayout layout) {

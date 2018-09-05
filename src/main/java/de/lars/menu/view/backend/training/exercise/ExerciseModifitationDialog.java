@@ -7,6 +7,8 @@ package de.lars.menu.view.backend.training.exercise;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -25,11 +27,20 @@ public abstract class ExerciseModifitationDialog extends Dialog {
     protected TextArea tfDescription;
 
     public ExerciseModifitationDialog(Exercise exercise) {
-        tfName = new TextField("Name", "Name eintragen ...");
+        tfName = new TextField("", "Name eintragen ...");
         tfName.setAutofocus(true);
-        tfDescription = new TextArea("Beschreibung", "Beschreibung eintragen ...");
+        tfDescription = new TextArea("", "Beschreibung eintragen ...");
 
         setEntity(exercise);
+
+        FormLayout layout = new FormLayout();
+        tfName.setWidth("100%");
+        layout.addFormItem(tfName, "Name");
+
+        tfDescription.setWidth("100%");
+        layout.addFormItem(tfDescription, "Beschreibung");
+
+        layout.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 1));
 
         Button confirmButton = new Button("Confirm", event -> {
             exercise.setName(tfName.getValue());
@@ -41,9 +52,12 @@ public abstract class ExerciseModifitationDialog extends Dialog {
             close();
         });
 
-        add(new VerticalLayout(tfName, tfDescription, new HorizontalLayout(confirmButton, cancelButton)));
-        setHeight("400");
-        setWidth("500");
+        Span span = new Span();
+        HorizontalLayout btns = new HorizontalLayout(span, confirmButton, cancelButton);
+        btns.setWidth("100%");
+        btns.expand(span);
+
+        add(new VerticalLayout(layout, btns));
     }
 
     public boolean isSaved() {

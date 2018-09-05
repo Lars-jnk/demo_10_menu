@@ -31,11 +31,13 @@ public class ExerciseDeleteDialog extends DeleteDialog {
         TextField tfName = new TextField();
         tfName.setValue(exercise.getName());
         tfName.setEnabled(false);
+        tfName.setWidth("100%");
         layout.addFormItem(tfName, "Name");
 
         TextArea tfDescription = new TextArea();
         tfDescription.setValue(exercise.getDescription());
         tfDescription.setEnabled(false);
+        tfDescription.setWidth("100%");
         layout.addFormItem(tfDescription, "Beschreibung");
 
         layout.setResponsiveSteps(new ResponsiveStep("0", 1));
