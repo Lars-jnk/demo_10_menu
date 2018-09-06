@@ -33,11 +33,10 @@ public abstract class DeleteDialog extends Dialog {
             close();
         });
 
-        Span span1 = new Span("Wollen Sie den Datensatz wirklic löschen?");
-        Span span2 = new Span();
-        HorizontalLayout btns = new HorizontalLayout(span1, confirmButton, cancelButton);
+        Span span = new Span("Wollen Sie den Datensatz wirklich löschen?");
+        HorizontalLayout btns = new HorizontalLayout(span, confirmButton, cancelButton);
         btns.setWidth("100%");
-        btns.expand(span1);
+        btns.expand(span);
         add(new VerticalLayout(content, btns));
     }
 
